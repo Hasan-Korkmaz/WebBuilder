@@ -1,0 +1,33 @@
+﻿
+.webbuilder-datatable-buttons-header
+{
+    width:150px;
+}
+.webbuilder-datatable-buttons-container {
+    display: flex;
+    justify-content: space-around;
+}
+    .webbuilder-datatable-buttons-container .webbuilder-datatable-buttons
+    {
+        width:45%;
+    }
+    .dt-buttons .btn-secondary
+    {
+        border:none;
+        margin:2px 2px;
+        border-radius:2px !important;
+    }
+
+    form label
+    {
+        text-align:right !important;
+    }
+
+.is-true {
+    background-color: #2ca444;
+    color:white;
+}
+.is-false {
+    background-color: #E35D6A;
+    color:white;
+}

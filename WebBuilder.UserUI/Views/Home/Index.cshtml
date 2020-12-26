@@ -1,0 +1,361 @@
+﻿@model UiDataService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var slider = Model.SliderService.GetList(x => x.isActive == true).Result;
+    var languageServisDatas = Model.LanguageService.GetLanguageURL(x => x.isActive == true).Result;
+    var productServisDatas = Model.ProductService.GetList(x => x.isActive == true).Result;
+
+    List<Slider> sliderList = null;
+    List<LanguageWithUrl> languageList = null;
+    List<Product> productList = null;
+    if (languageServisDatas.Status == WebBuilder.Core.Util.Enums.Status.Success)
+    {
+        languageList = languageServisDatas.Data;
+    }
+    if (slider.Status == Enums.Status.Success)
+    {
+        sliderList = slider.Data.ToList();
+    }
+    if (productServisDatas.Status == Enums.Status.Success)
+    {
+        productList = productServisDatas.Data.ToList();
+    }
+
+}
+<!--<div id="mainSwiper" class="swiper-container">
+    <div class="swiper-wrapper">
+        @*@foreach (var item in sliderList)
+        {
+            var url = item.ImageURL;
+            var altValue = item.AltValue;
+            <div class="swiper-slide"><div style="width:100%;height:600px;background-image:url('@url');background-repeat:no-repeat;background-position:center;background-size: cover;opacity:0.8;"></div></div>
+        }*@
+    </div>
+    <!-- Add Scrollbar -->
+    <!--<div class="swiper-scrollbar"></div>
+</div>-->
+
+<div class="header-content-machine">
+    <div class="swiper-wrapperrrr" style="height:640px; overflow:hidden">
+        <div class="swiper-slideeee" style="height:640px; overflow:hidden">
+            <div style="        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 173px;
+        background: linear-gradient(360deg, #2f2f2f 0%, rgba(53, 53, 53, 0.6) 39.58%, rgba(57, 57, 57, 0.61) 39.59%, rgba(196, 196, 196, 0) 100%); transform: rotate(-180deg);"></div>
+            <div style="position: absolute; z-index:1; width: 100%; height: 640px; left: 0px; background: linear-gradient(360deg, rgba(49, 46, 46, 0.74) 0%, rgba(56, 56, 56, 0.44) 26.56%, rgba(57, 57, 57, 0.49) 38.54%, rgba(196, 196, 196, 0) 100%);">
+
+            </div>
+
+
+            <div class="index-header-content-container">
+                <div class="index-header-content-up-title">What Is Lorem Ipsum</div>
+                <div class="index-header-content-big-title">Lorem Ipsum is that it has a more-or-less </div>
+                <div class="index-header-content-down-title"> in the middle of text. All the Lorem Ipsum</div>
+                <div class="header-slider-button-container">
+                    <button class="header-slider-button">START</button>
+                </div>
+            </div>
+
+            <img src="~/WebBuilderContent/Images/Slider/1.jpg" style="        width: 100%;
+        height: 660px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        filter: brightness(100%);
+        margin-top: -5px;
+        z-index: -1;"></img>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<section id="specifications" class="center specifications">
+
+    <h1 class="section-title">@Model.GlobalTextDataService.GetKeyValue("specifications-title-text").Result.Data </h1>
+    <h2 class="sub-title">@Model.GlobalTextDataService.GetKeyValue("specifications-subtitle-text").Result.Data</h2>
+    <div class="specifications-item-container">
+        <div class="specifications-item-left">
+            <div class="specifications-item" style="margin:50px 0px;">
+                <div class="specifications-item-data-container" style="text-align:right;">
+                    <h4>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-title1").Result.Data</h4>
+                    <h5>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-subtitle1").Result.Data</h5>
+                    <p>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-text1").Result.Data</p>
+                </div>
+                <div class="specifications-item-icon-container">
+                    <i class="fas fa-book-open"></i>
+                </div>
+            </div>
+            <div class="specifications-item">
+                <div class="specifications-item-data-container" style="text-align:right;">
+                    <h4>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-title2").Result.Data</h4>
+                    <h5>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-subtitle2").Result.Data</h5>
+                    <p>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-text2").Result.Data</p>
+                </div>
+                <div class="specifications-item-icon-container">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="specifications-item-center">
+            <img src="~/WebBuilderContent/Images/General/CenterImage.png" />
+        </div>
+        <div class="specifications-item-right">
+            <div class="specifications-item">
+                <div class="specifications-item-icon-container">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <div class="specifications-item-data-container">
+                    <h4>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-title3").Result.Data</h4>
+                    <h5>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-subtitle3").Result.Data</h5>
+                    <p>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-text3").Result.Data</p>
+                </div>
+
+            </div>
+            <div class="specifications-item">
+                <div class="specifications-item-icon-container">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="specifications-item-data-container">
+                    <h4>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-title4").Result.Data</h4>
+                    <h5>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-subtitle4").Result.Data</h5>
+                    <p>@Model.GlobalTextDataService.GetKeyValue("advanced-but-simple-text4").Result.Data</p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</section>
+<section id="science-engineering" class="science-engineering">
+    <img style="position:absolute" class="science-engineering-image" src="~/WebBuilderContent/Images/General/mekanik.png" />
+    <div class="science-engineering-content">
+        <div class="science-engineering-content-icon"><i class="fas fa-users-cog"></i></div>
+        <div class="science-engineering-content-title">
+            @Model.GlobalTextDataService.GetKeyValue("science-engineering-title").Result.Data
+        </div>
+        <div class="science-engineering-content-subtitle">
+            @Model.GlobalTextDataService.GetKeyValue("science-engineering-text").Result.Data
+        </div>
+        <div class="science-engineering-content-button-container">
+            <a href="#" class="science-engineering-content-button">@Model.GlobalTextDataService.GetKeyValue("science-engineering-button-text").Result.Data</a>
+        </div>
+
+    </div>
+</section>
+<section id="you-are-good" class="you-are-good">
+    <div class="you-are-good-container" >
+        <div><h2 class="you-are-good-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title").Result.Data*@ You're in good company!</h2></div>
+        <div class="you-are-good-description"> <span>@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-subtext").Result.Data Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</span></div>
+        <div class="you-are-good-item-container">
+            <div class="you-are-good-container-item">
+                <div class="you-are-good-container-item-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-panel-lamination").Result.Data*@ PANEL LAMINATION</div>
+                <div class="you-are-good-container-item-hr">
+                    <input type="range" min="1" max="100" value="25" disabled>
+                </div>
+                <div class="you-are-good-container-item-img" style="background-image:url(../WebBuilderContent/Images/General/1a.jpg)"></div>
+            </div>
+            <div class="you-are-good-container-item">
+                <div class="you-are-good-container-item-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-panel-lamination").Result.Data*@ WOOD WRAPPING AND VENEER</div>
+                <div class="you-are-good-container-item-hr">
+                    <input type="range" min="1" max="100" value="25" disabled>
+                </div>
+                <div class="you-are-good-container-item-img" style="background-image:url(../WebBuilderContent/Images/General/2a.jpg)"></div>
+            </div>
+            <div class="you-are-good-container-item">
+                <div class="you-are-good-container-item-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-panel-lamination").Result.Data*@ CUTTING AND SLICING</div>
+                <div class="you-are-good-container-item-hr">
+                    <input type="range" min="1" max="100" value="25" disabled>
+                </div>
+                <div class="you-are-good-container-item-img" style="background-image:url(../WebBuilderContent/Images/General/3a.jpg)"></div>
+            </div>
+            <div class="you-are-good-container-item">
+                <div class="you-are-good-container-item-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-panel-lamination").Result.Data*@ PVC COATING AND ARCH BENDING</div>
+                <div class="you-are-good-container-item-hr">
+                    <input type="range" min="1" max="100" value="25" disabled>
+                </div>
+                <div class="you-are-good-container-item-img" style="background-image:url(../WebBuilderContent/Images/General/4a.jpg)"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="you-are-good-container you-are-good-container-mobile">
+        <div class="you-are-good-container-right">
+
+            <div class="you-are-good-logo-container">
+                <img src="~/WebBuilderContent/Images/logo.png" alt="Biotech_Logo" class="img-center" /><span class="you-are-good-logo-container-text">BIOTECH</span>
+            </div>
+
+            <div class="you-are-good-container-right-img" style="background-image:url(../WebBuilderContent/Images/General/epoksi.png)">
+
+            </div>
+            <div class="you-are-good-container-right-content">
+                <div class="you-are-good-container-right-content-title">@Model.GlobalTextDataService.GetKeyValue("you-are-good-container-right-content-title").Result.Data</div>
+                <hr />
+                <div>
+                    @Model.GlobalTextDataService.GetKeyValue("you-are-good-container-right-content-description").Result.Data
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="references" class="references">
+    <!--<div style="display:flex;justify-content:center;"><h1 class="our-trademarkers-title"> @Model.GlobalTextDataService.GetKeyValue("section-references-side").Result.Data</h1></div>
+    <hr style="width:25%;height:1px;opacity:0.5; background-color:#989797; margin-left:auto; margin-right:auto;" />-->
+
+    <div class="references-swiper-container">
+        <div id="refencesSwiper" class="swiper-container swiper-container-references">
+
+            <div style="display:flex;justify-content:center;"><h1 class="our-trademarkers-title"> @Model.GlobalTextDataService.GetKeyValue("section-references-side").Result.Data</h1></div>
+            <hr class="our-trademarkers-references-hr" style="margin-left:auto; margin-right:auto;" />
+
+
+            <div class="swiper-wrapper" style="background:none;">
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/boydak.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/celik.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/karcher.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/mepas.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/mobiliz.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/tekno.png" /></div>
+                <div class="swiper-slide" style="background:none; height:150px;"><img src="~/WebBuilderContent/Images/Slider/Refences/tto.png" /></div>
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+    </div>
+</section>
+<section id="our-trademarkers" class="our-trademarkers">
+    <div><h1 class="our-trademarkers-title"> @Model.GlobalTextDataService.GetKeyValue("our-trademarkers-title").Result.Data</h1></div>
+    <hr class="our-trademarkers-references-hr"/>
+
+
+    <div id="ourTrademarkersSwiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide swiper-slide-our-trademarkers">
+                <div class="our-trademarkers-content-item">
+                    <div class="our-trademarkers-content-item-img-container" style="background-image:url(../WebBuilderContent/Images/General/marka1.jpg); background-size:cover;"></div>
+                    <div class="our-trademarkers-content-item-title">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-title").Result.Data*@Advanced but Simple</div>
+                    <div class="our-trademarkers-content-item-subtitle">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-subtitle").Result.Data*@Modern Design</div>
+                    <div class="our-trademarkers-content-item-description">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-description").Result.Data*@Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-our-trademarkers">
+                <div class="our-trademarkers-content-item">
+                    <div class="our-trademarkers-content-item-img-container" style="background-image: url(../WebBuilderContent/Images/General/marka2.jpg); background-size:cover;"></div>
+                    <div class="our-trademarkers-content-item-title">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-title").Result.Data*@Advanced but Simple</div>
+                    <div class="our-trademarkers-content-item-subtitle">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-subtitle").Result.Data*@Modern Design</div>
+                    <div class="our-trademarkers-content-item-description">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-description").Result.Data*@Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-our-trademarkers">
+                <div class="our-trademarkers-content-item">
+                    <div class="our-trademarkers-content-item-img-container" style="background-image:url(../WebBuilderContent/Images/General/marka3.jpg); background-size:cover;"></div>
+                    <div class="our-trademarkers-content-item-title">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-title").Result.Data*@Advanced but Simple</div>
+                    <div class="our-trademarkers-content-item-subtitle">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-subtitle").Result.Data*@Modern Design</div>
+                    <div class="our-trademarkers-content-item-description">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-description").Result.Data*@Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-our-trademarkers">
+                <div class="our-trademarkers-content-item">
+                    <div class="our-trademarkers-content-item-img-container" style="background-image:url(../WebBuilderContent/Images/General/marka4.jpg); background-size:cover;"></div>
+                    <div class="our-trademarkers-content-item-title">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-title").Result.Data*@Advanced but Simple</div>
+                    <div class="our-trademarkers-content-item-subtitle">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-subtitle").Result.Data*@Modern Design</div>
+                    <div class="our-trademarkers-content-item-description">@*@Model.GlobalTextDataService.GetKeyValue("our-trademarkers-content-item-description").Result.Data*@Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="swiper-pagination"></div>-->
+    </div>
+
+</section>
+<script>
+    var swiper = new Swiper('#mainSwiper', {
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            hide: true,
+        },
+         autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+        loop: true,
+    });
+    var referencesSwiper = new Swiper('#refencesSwiper', {
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 1,
+        spaceBetween: 60,
+
+        loop: true,
+
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            380: { //when window width is <= 380px
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            536: { //when window width is <= 640px
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 6,
+                spaceBetween: 50,
+            },
+        }
+    });
+
+    var ourTrademarkersSwiper = new Swiper('#ourTrademarkersSwiper', {
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 1,
+        spaceBetween: 60,
+
+        loop: true,
+
+        breakpoints: {
+            380: { //when window width is <= 380px
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            640: { //when window width is <= 640px
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+            },
+        }
+    });
+
+
+</script>

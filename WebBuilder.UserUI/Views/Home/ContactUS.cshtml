@@ -1,0 +1,257 @@
+﻿@model UiDataService
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    /*
+public string NameSurname { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public string Subject { get; set; }
+    public string Content { get; set; }
+    public bool IsRead { get; set; }*/
+
+
+    var contactMessages = Model.ContactService.GetList(x => x.isActive == true && x.isDelete == false && x.IsRead == false).Result;
+    List<Contact> myData = new List<Contact>();
+    if (contactMessages.Status == Enums.Status.Success)
+    {
+        myData = contactMessages.Data;
+    }
+}
+
+
+<section id="contactus-photo-header">
+    <div class="bg-image"></div>
+    <div class="contact-us-photo-header-content">
+        <p class="contact-us-photo-header-content-title">Contact Us</p>
+        <p class="contact-us-photo-header-content-subtitle">You can Contact us online, vısıt or gıve us a call</p>
+    </div>
+</section>
+<main>
+    <section id="contact-with-us-side">
+        <div class="contact-with-us-side-title">
+            <div class="title">Questions? Let us know...</div>
+            <p>
+                Do you have a question on our products and services? Connect with us. Please complete this form to
+                get more information about selected products or applications. All the Lorem Ipsum generators on the
+                Internet tend to repeat predefined chunks generators on the Internet
+            </p>
+        </div>
+        <div>
+
+
+            <div class="contact-with-us-side-cards">
+                <div class="contact-with-us-side-title-col">
+                    <img src="~/WebBuilderContent/Images/General/contactus-card1-img.png" alt="Photo 1">
+                    <div class="contact-with-us-side-title-col-content">
+                        <div class="circle"><i class="far fa-envelope-open"></i></div>
+                        <h4 class="contact-with-us-side-col-title">By Phone</h4>
+                        <p class="contact-with-us-side-col-comment">
+                            Various versions have evolved over the years,
+                            sometimes by accident, sometimes on purpose
+                        </p>
+                        <div class="contact-with-us-side-numbers">
+                            <p>
+                                Bussiness Phone<br>
+                                <i class="fas fa-phone"></i><span style="margin-left: 5px;">(0312) 312 3123</span>
+                            </p>
+                            <p>
+                                Fax<br>
+                                <i class="fas fa-fax"></i><span style="margin-left: 5px;">(0312) 312 3123</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-with-us-side-title-col">
+                    <img src="~/WebBuilderContent/Images/General/contactus-card2-img.png" alt="Photo 2">
+
+                    <div class="contact-with-us-side-title-col-content">
+                        <div class="circle"><i class="fas fa-hashtag"></i></div>
+                        <h4 class="contact-with-us-side-col-title">By Social Media</h4>
+                        <p class="contact-with-us-side-col-comment">
+                            There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form, by injected
+                            humour, or randomised words which don't look even slightly believable.
+                        </p>
+                        <div class="contact-with-us-side-social-medias">
+                            <div>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-with-us-side-title-col">
+                    <img src="~/WebBuilderContent/Images/General/contactus-card3-img.png" alt="Photo 3">
+                    <div class="contact-with-us-side-title-col-content">
+                        <div class="circle"><i class="far fa-comments"></i></div>
+                        <h4 class="contact-with-us-side-col-title">Other Connect</h4>
+                        <p class="contact-with-us-side-col-comment">
+                            Various versions have evolved over the years,
+                            sometimes by accident, sometimes on purpose
+                        </p>
+                        <div class="contact-with-us-side-adress-mail">
+                            <p>
+                                Address:<br>
+                                <i class="fas fa-map-marker-alt"></i><span style="margin-left: 5px;">
+                                    Cankaya
+                                    Neigborhood Tunalı Hilmi Street 59/N.
+                                </span>
+                                <div>ANKARA / CANKAYA</div>
+                            </p>
+                            <p>
+                                E-Mail:<br>
+                                <i class="fas fa-envelope"></i><span style="margin-left: 5px;">info@biotech.net</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-location-informations-side">
+        <div class="our-location-informations-side-title">
+            <h2>Would you like to see us?</h2>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae temporibus tenetur enim neque
+                vero, totam porro deleniti voluptates consequatur eligendi sit voluptatum veritatis quisquam, ex ea
+                earum, a nulla beatae?On the other hand, we denounce with righteous indignation and dislike men who
+                are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that
+                they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those
+            </p>
+        </div>
+        <div class="our-location-informations-side-card">
+            <img src="~/WebBuilderContent/Images/General/contactus-background-img.png" alt="view">
+            <div class="our-location-informations-side-card-big-container">
+                <div class="our-location-informations-side-card-container">
+
+                    <div class="our-location-informations-side-location-write">Location:</div>
+                    <div class="our-location-informations-side-address-column">
+                        <div class="circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <p>
+                            <b><i class="fas fa-map-marker-alt"></i>&nbsp;Ankara Office</b>
+                            <br>(0332) 312 3123
+                            <br>Cankaya Neigborhood Tunalı Hilmi Street. 59/N
+                        </p>
+                        <button class="our-location-informations-side-address-button">see on map</button>
+                    </div>
+                    <div class="our-location-informations-side-address-column">
+                        <div class="circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <p>
+                            <b><i class="fas fa-map-marker-alt"></i>&nbsp;İzmir Office</b>
+                            <br>(0332) 312 3123
+                            <br>Uzay Cagi Neigborhood, 1253. Street Number:12 Ostim 06370
+                        </p>
+                        <button class="our-location-informations-side-address-button">see on map</button>
+                    </div>
+                    <div class="our-location-informations-side-address-column">
+                        <div class="circle"><i class="fas fa-map-marker-alt"></i></div>
+                        <p>
+                            <b><i class="fas fa-map-marker-alt"></i>&nbsp; Los Angelas Office</b>
+                            <br>(0312) 312 3123
+                            <br>Uzay Cagi Neigborhood, 1253. Street Number:12 Ostim 06370
+                        </p>
+                        <button class="our-location-informations-side-address-button">see on map</button>
+                    </div>
+                    <div class="our-location-informations-side-address-column">
+                        <p>
+                            <b><i class="fas fa-map-marker-alt"></i>&nbsp;New York City Office</b>
+                            <br>(0312) 312 3123
+                            <br>Uzay Cagi Neigborhood, 1253. Street Number:12 Ostim 06370
+                        </p>
+                        <button class="our-location-informations-side-address-button">see on map</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <section id="contact-us-form-side">
+        <div class="contact-us-form-side-content">
+            <p class="contact-us-form-side-content-title">Contact Form</p>
+            <p class="contact-us-form-side-content-subtitle">
+                Do you have a question on our products and services?
+                Connect with us. Please complete this form to
+                get more information about selected products. (*required entries)
+            </p>
+        </div>
+
+        <div class="contact-us-form-side-textboxes">
+            <div class="contact-us-form-side-textboxes-doubles-container">
+
+                <div class="contact-us-form-side-textboxes-doubles">
+                    <input class="double-textbox" placeholder="*First Name" type="text">
+                    <input class="double-textbox" placeholder="*Last Name" type="text">
+                </div>
+                <div class="contact-us-form-side-textboxes-doubles">
+                    <input class="double-textbox" placeholder="*Bussiness E-mail" type="text">
+                    <input class="double-textbox" placeholder="Phone" type="text">
+                </div>
+
+                <div class="contact-us-form-side-textboxes-doubles">
+                    <input class="double-textbox" placeholder="Company" type="text">
+                    <input class="double-textbox" placeholder="Job Title" type="text">
+                </div>
+
+            </div>
+
+            <div class="contact-us-form-side-textboxes-singles-container">
+                <div class="contact-us-form-side-textboxes-singles">
+                    <input class="block-textbox" placeholder="United States of America" type="text">
+                    <input class="block-textbox textbox-large" placeholder="*Address" type="text">
+                    <input class="block-textbox textbox-large" placeholder="*Please describe your request:" type="text">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-us-form-side-checkboxes">
+            <div class="contact-us-form-side-grid-container">
+                <div class="contact-us-form-side-grid-container-titles">I am interested in:</div>
+                <div class="contact-us-form-side-grid-container-chechboxes">
+                    <p><input type="checkbox"><span class="grid-margin-setting">Market Intelligence</span></p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">Sourcing & Procurement</span></p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">Market Intelligence</span></p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">Sourcing & Procurement</span></p>
+                </div>
+
+                <div class="contact-us-form-side-grid-container-titles">Please contact me for:</div>
+                <div class="contact-us-form-side-grid-container-chechboxes">
+                    <p><input type="checkbox"><span class="grid-margin-setting">Market Intelligence</span></p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">Sourcing & Procurement</span></p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">Market Intelligence</span></p>
+                </div>
+            </div>
+
+            <div class="contact-us-form-side-checkbox-bottom">
+                <div class="contact-us-form-side-checkbox-bottom-design">
+                    <p>
+                        <input type="checkbox"><span class="grid-margin-setting">
+                            I have read the privace policy and I
+                            agree to terms
+                        </span>
+                    </p>
+                    <p><input type="checkbox"><span class="grid-margin-setting">I consent to beign kept informed by e-mail                               from the Biotech about their produtcs and services</span></p>
+                </div>
+
+            </div>
+            <div class="contact-us-form-side-buttons">
+                <div class="contact-us-form-side-buttons-design">
+                    <button class="contact-us-form-side-reset-button">Reset</button>
+                    <button class="contact-us-form-side-submit-button" style="margin-left: 10px;">
+                        <i class="fab fa-telegram-plane"></i>Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </section>

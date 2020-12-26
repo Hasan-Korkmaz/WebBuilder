@@ -1,0 +1,76 @@
+﻿@model UiDataService
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+    var contactInformationMessages = Model.ContactInformationService.GetList(x => x.isActive == true && x.isDelete == false).Result;
+    List<ContactInformation> myData = new List<ContactInformation>();
+    if (contactInformationMessages.Status == Enums.Status.Success)
+    {
+        myData = contactInformationMessages.Data;
+    }
+}
+
+<div style="margin-left:450px">
+    <h1 > Welcome To Contact Information</h1>
+</div>
+<br />
+
+
+
+
+@foreach (var item in myData)
+{
+    foreach (var jitem in item.PhoneNumbers)
+    {
+        var phoneName = jitem.Name;
+        var phoneNumber = jitem.Number;
+
+<div style="margin-left:625px">
+    <h4>Telefon Numaralarımız</h4>
+    <a href="#" style="color:darkred">@phoneName</a>
+    <a href="#" style="color:blue">@phoneNumber</a>
+</div>
+<br />
+        
+    }
+
+    foreach (var social in item.SocialMedias)
+    {
+        var socialMediaName = social.Name;
+        var socialUrl = social.Url;
+
+<div style="margin-left:625px">
+    <h4>Sosyal Medya Hesaplarımız</h4>
+    <a href="#" style="color:darkred">@socialMediaName</a>
+    <a href="#" style="color:blue">@socialUrl</a>
+</div>
+<br />
+    }
+
+    foreach (var location in item.Locations)
+    {
+        var locValue1 = location.Latitude;
+        var locValue2 = location.Longitude;
+        var locZoom = location.Zoom;
+
+<div style="margin-left:625px">
+    <h4>Harita Konumları</h4>
+    <a href="#" style="color:royalblue">@locValue1</a>
+    <a href="#" style="color: royalblue">@locValue2</a>
+    <a href="#" style="color:palevioletred">@locZoom</a>
+</div>
+<br />
+    }
+    
+    var mail = item.Mail;
+    var adress = item.Adress;
+    
+    <div style="margin-left:625px">
+    <h4>Bize Ulaşın:</h4>
+        <h6>@mail</h6>
+        <span> @adress</span>
+    </div>
+
+}

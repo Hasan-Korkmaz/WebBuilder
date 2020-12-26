@@ -1,0 +1,1092 @@
+﻿
+@media only screen and (max-width:575.98px) {
+
+    /*SPESIFICATION START*/
+    .specifications {
+        width: 95%;
+    }
+
+    .section-title {
+        font-size: 2.3rem !important;
+    }
+
+    .specifications-item {
+        margin: 40px 5px !important;
+    }
+
+    .specifications-item-icon-container {
+        max-width: 20px;
+    }
+
+    .specifications-item-center img {
+        width: 100%;
+    }
+
+    .specifications-item-container .specifications-item-right .specifications-item-icon-container {
+        margin: 0px 0px;
+        margin-right: 30px;
+    }
+    /*SPECIFICATION FINISH*/
+
+    /*YOU ARE GOOD START*/
+    .you-are-good-title {
+        font-size: 2.3rem;
+    }
+
+    .you-are-good-description {
+        font-size: 2.1rem;
+        line-height: 2.2rem;
+    }
+
+    .you-are-good-item-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .you-are-good-container-item {
+        width: 90%;
+    }
+
+    .you-are-good-container-right-img {
+        height: 20rem !important;
+    }
+
+    .you-are-good-container-mobile {
+        width: 90% !important;
+        margin: 3rem 0px;
+    }
+    /*YOU ARE GOOD FINISH*/
+
+    .our-trademarkers-title {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media only screen and (max-width:768px) {
+
+    /*SPESIFICATION START*/
+    .specifications {
+        width: 85%;
+    }
+
+    .specifications-item {
+        margin: 40px 5px !important;
+    }
+
+    .specifications-item-center {
+        width: 100%;
+    }
+
+    .specifications-item-icon-container {
+        max-width: 20px;
+    }
+
+    .specifications-item-center img {
+        width: 90%;
+    }
+
+    .specifications-item-container .specifications-item-right .specifications-item-icon-container {
+        margin: 0px 0px;
+        margin-right: 30px;
+    }
+    /*SPECIFICATION FINISH*/
+
+    /**/
+    .science-engineering-content-title {
+        height: auto;
+        font: bold 32px 'Open Sans',sans-serif;
+        text-align: center;
+        opacity: 1;
+    }
+
+    .science-engineering-content-subtitle {
+        height: auto;
+        font: 15px 'Open Sans',sans-serif;
+        text-align: center;
+        opacity: 0.94;
+        padding: 15px;
+    }
+    /**/
+
+    .our-trademarkers-title {
+        font-size: 2.8rem;
+    }
+
+    .our-trademarkers-content-item {
+        padding: 15px;
+    }
+
+    /*FOOTER START*/
+    .footer-content {
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    .footer-column {
+        width: 97%;
+        margin-top: 0px;
+        padding: 0.7rem 0px;
+    }
+
+    .footer-column-title {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        letter-spacing: 0.8px;
+    }
+
+    .footer-column-text {
+        font-size: 1.4rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .footer-column-items {
+        margin-top: 0.7rem;
+        display: none;
+    }
+
+    .footer-column-text i {
+        font-size: 1.1rem !important;
+        margin-right: 0px;
+    }
+
+    .footer-follow-us-icons {
+        font-size: 1.7rem !important;
+    }
+
+    .footer-company span {
+        display: none;
+    }
+
+    .footer-section hr {
+        display: none;
+    }
+
+    .footer-section {
+        width: 90%;
+    }
+
+    .footer-follow-us {
+        font-size: 1rem;
+        margin-top: 6px;
+        color: #B0B0B0;
+    }
+
+    .plus-footer {
+        display: flex !important;
+    }
+
+    .footer-mobile-hr {
+        display: block !important;
+        width: 100%;
+        background: #B0B0B0;
+    }
+
+    .footer-content:nth-child(1) {
+        margin-top: 2rem;
+    }
+
+    .footer-content:nth-child(1) {
+        margin-top: 2rem;
+    }
+
+    .footer-company {
+        display: none;
+    }
+
+    .footer-company-mobile {
+        display: flex;
+        flex-direction: column;
+        color: #B0B0B0;
+        padding-bottom: 5px;
+        align-items: center;
+    }
+    /*FOOTER FINISH*/
+
+}
+
+@media only screen and (max-width:991.98px) {
+
+    /*MOBILE MENU START*/
+    nav {
+        display: block !important;
+    }
+
+    header {
+        width: 100% !important;
+    }
+
+    /*.menu-item {
+        display: block;
+    }*/
+
+    .main-container {
+        padding-top: 10px;
+        top: 0;
+        z-index: 2;
+        transition: 500ms ease;
+        background: transparent;
+        position: absolute !important;
+        width: 100%;
+    }
+
+    .img-center {
+        z-index: 242425;
+        display: block;
+        margin-left: 0px;
+        margin-right: 2px;
+        width: 75px;
+    }
+
+    .logo-container {
+        z-index: 242425;
+    }
+
+        .logo-container .logo-container-text {
+            color: white;
+            font-family: OpenSans;
+            font-style: normal;
+            font-size: 20px;
+            line-height: 40px;
+            letter-spacing: -0.05em;
+            color: #FFFFFF;
+            text-shadow: 0px 20px 8px rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            margin-left: -15px;
+            margin-top: -8px;
+            z-index: 242425;
+        }
+
+            .logo-container .logo-container-text::first-letter {
+                font-size: 55px;
+            }
+
+    .menu-container {
+        display: none;
+    }
+
+    .menu-container-mobile {
+        z-index: 242424;
+        display: grid !important;
+        grid-template-columns: auto;
+        background: #1c1313;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        left: -100%;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    .menu-item {
+        text-align: center;
+        line-height: 60px;
+        width: 100%;
+        display: table !important;
+    }
+
+    .menu-container-mobile:hover {
+        background-color: #efd424;
+        color: white;
+        transition: all 0.4s ease-out;
+    }
+
+    .menu-container-mobile.active {
+        background: #1c1313;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    /**/ .all-menu ul li a:active {
+        color: #efd424;
+    }
+
+    .dropdown {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: #1c1313;
+        color: white;
+        transition: all 0.4s ease;
+    }
+    /*.dropdown:hover {
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        background-color: #efd424;
+        color: white;
+        transition: all 0.4s ease;
+    }*/
+    /*.dropdown:hover .dropdown-content-mobile {
+            display: block;
+        }*/
+    .dropdown-content-mobile {
+        text-align: center;
+        line-height: 45px;
+        width: 100%;
+        /*display: table !important;*/
+        background-color: #1c1313;
+    }
+
+    .menu-toggle {
+        display: block !important;
+        cursor: pointer;
+        z-index: 242425;
+    }
+
+    #mobile-menu {
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%,20%);
+    }
+
+    .menu-toggle .bar {
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.5s ease-in-out;
+        display: block;
+        background: white;
+    }
+
+    #mobile-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-menu.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #mobile-menu.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /*MOBILE MENU FINISH*/
+
+    /*specifications start*/
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .specifications-item-container {
+        flex-direction: column;
+    }
+
+    /*.specifications-item-center img {
+        width: 90%;
+    }*/
+    /*specificatioons finish*/
+
+    /**/
+    .science-engineering-content-title {
+        height: auto;
+        font: bold 32px 'Open Sans',sans-serif;
+        text-align: center;
+        opacity: 1;
+    }
+
+    .science-engineering-content-subtitle {
+        height: auto;
+        font: 15px 'Open Sans',sans-serif;
+        text-align: center;
+        opacity: 0.94;
+        padding: 15px;
+    }
+    /**/
+
+
+    /*YOU ARE GOOD START*/
+    .you-are-good {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .you-are-good-container {
+        width: 80%;
+    }
+
+    .you-are-good-container-mobile {
+        width: 90% !important;
+        margin: 3rem 0px;
+    }
+
+    .you-are-good-container-right-img {
+        height: 35rem;
+    }
+    /*YOU ARE GOOD FINISH*/
+}
+
+@media (min-width:992px) and (max-width:1100px) {
+
+    .menu-container .menu-item a {
+        padding: 10px 8px;
+    }
+
+    .menu-container .menu-item {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+
+    .specifications {
+        width: 95%;
+    }
+}
+
+@media (min-width:1100px) and (max-width:1326px) {
+
+    .menu-container .menu-item {
+        font-size: 15px;
+        letter-spacing: 0;
+    }
+
+    .specifications {
+        width: 90%;
+    }
+}
+
+
+@media only screen and (max-width: 360px) {
+    .our-managment-mision-design-row-two {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 575.98px) {
+    .our-managment-mision-design-row-two {
+        padding-left: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+    /* ------- Our Managment Section Start ------- */
+    .our-managment-person-description-content .subtitle {
+        padding: 10px 10% !important;
+    }
+
+    .our-managment-person-description-cards {
+        flex-wrap: wrap;
+    }
+
+    .ompd-side-card {
+        width: 40%;
+    }
+    /* ------- Our Managment Section End ------- */
+
+    /* ------- Our Managment Section Start ------- */
+    .what-is-our-company-description-title {
+        font-size: 1.3rem;
+    }
+
+    .what-is-our-company-description-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .wiocd-contents:first-child {
+        margin-top: 0px;
+    }
+
+    .wiocd-contents:last-child {
+        margin-top: 0px;
+    }
+
+    .wiocd-contents-title {
+        font-size: 1rem;
+    }
+
+    .wiocd-contents-subtitle {
+        font-size: 1rem;
+        text-align: center;
+    }
+    /* ------- Our Managment Section End ------- */
+
+    /* ------- Our Managment Section Start ------- */
+    .our-managment-mision-design-row-big-container {
+        flex-direction: column;
+        padding: 2rem 0;
+        align-items: center;
+    }
+
+    .our-managment-mision-design-row-one {
+        margin: 0px;
+    }
+
+    #our-managment-mision-design {
+        height: auto;
+        padding-bottom: 0 !important;
+    }
+
+        #our-managment-mision-design .our-managment-mision-design-header {
+            height: 100%;
+        }
+
+    .our-managment-mision-design-row-two {
+        width: 100% !important;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10%;
+        padding-left: 20px;
+    }
+    /* ------- Our Managment Section End ------- */
+
+
+
+    #our-managment-projects-and-other {
+        height: auto;
+    }
+
+    .our-managment-projects-and-other-big-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .our-managment-mision-design-row-three {
+        display: none;
+    }
+
+    .our-managment-projects-and-other-title {
+        font-size: 1rem;
+        padding: 5% 5%;
+        text-align: center;
+    }
+
+    .our-managment-projects-and-other-content {
+        margin: 1rem 0rem;
+    }
+    /**/
+    .our-values-and-principles-big-container {
+        flex-direction: column;
+        padding: 1rem 1rem;
+    }
+
+    .our-values-and-principles-row-one {
+        width: 100%;
+    }
+
+    .our-values-and-principles-row-two {
+        width: 100%;
+    }
+
+    .our-values-and-principles-row-one-title-br {
+        display: none;
+    }
+
+    .our-values-and-principles-row-one .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .our-values-and-principles-row-two-text-container .subtitle {
+        text-align: justify;
+    }
+
+    .our-values-and-principles-row-one {
+        padding-right: 0px !important;
+    }
+
+
+
+    .our-managment-projects-and-other-big-container {
+        padding-top: 0;
+        padding-bottom: 1rem;
+    }
+    /*tab menu start*/
+    .our-managment-need-you-know-tab {
+        flex-direction: column !important;
+    }
+
+    .our-managment-need-you-know-big-tab-title {
+        padding-bottom: 0 !important;
+    }
+
+    .omnyn-tab-content-image-side {
+        width: 100% !important;
+    }
+    /*tab menu finish*/
+
+    /*we work with start*/
+    .who-work-with-side-image-container {
+        width: 95%;
+    }
+
+    .who-work-with-side-image-container-col .image-container {
+        float: left;
+        width: 45% !important;
+        height: auto;
+        margin: 20px 5px 0px 10px;
+    }
+
+        .who-work-with-side-image-container-col .image-container img {
+            width: 100%;
+            height: auto;
+        }
+    /*we work with finish*/
+
+
+}
+
+@media only screen and (max-width: 991.98px) {
+    /*header start*/
+    #services-photo-header .header-content {
+        padding: 1rem 1rem;
+        width: 90%;
+        padding-top: 13rem !important;
+    }
+
+    .header-content-title {
+        font-size: 1.3rem;
+    }
+
+    .header-content-subtitle {
+        font-size: 1.1rem;
+    }
+    /*header finish*/
+
+    /*person description start*/
+    .our-managment-person-description-content .subtitle {
+        font-size: 1rem;
+        text-align: justify;
+        padding: 1rem 2rem;
+    }
+
+    .our-managment-person-description-content .title {
+        font-size: 1.3rem;
+    }
+    /*person description finish*/
+
+    /*tab menu start*/
+    #our-managment-need-you-know-tab {
+        width: 100%;
+    }
+
+    .our-managment-need-you-know-tab {
+        display: flex;
+        flex-direction: row;
+        padding: 6px 12px;
+        align-items: flex-start;
+    }
+
+    .omnyn-tab-content-image-side {
+        margin-left: 0;
+        margin-bottom: 1.2rem;
+        width: 70%;
+    }
+
+    .our-managment-need-you-know-big-tab-title {
+        position: initial;
+    }
+
+    .our-managment-need-you-know-tab-content {
+        padding-top: 0px;
+        display: block;
+        width: 100%;
+        padding: 0px;
+    }
+
+    .our-managment-need-you-know-big-tab {
+        position: initial;
+        padding-top: 2rem;
+        width: 100% !important;
+        align-items: flex-start;
+    }
+
+    .our-managment-need-you-know-big-tab-title {
+        font-size: 2rem;
+        padding: 6px 12px;
+        text-transform: uppercase;
+        padding-bottom: 2rem;
+    }
+
+    .omnyn-tab-content-text-side {
+        width: 90%;
+    }
+
+    .omnyn-tab-content-big-container-img {
+        display: flex;
+        justify-content: center;
+        width: 90% !important;
+        margin: 0 auto;
+    }
+
+    .omnyn-tab-content-big-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .omnyn-tab-content-text-side .title {
+        font-size: 1.8rem;
+    }
+    /*tab menu finish*/
+
+    #our-managment-mision-design {
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .our-managment-mision-design-row-three {
+        display: none;
+    }
+
+    .our-managment-mision-design-row-two {
+        width: 48%;
+    }
+
+    .our-managment-mision-design-row-two-content-inside {
+        align-items: center;
+    }
+
+    .our-values-and-principles-big-container {
+        padding-left: 2rem;
+    }
+
+    .our-values-and-principles-row-one {
+        padding-right: 2.5rem;
+    }
+
+    #our-managment-catchword-side {
+        height: auto;
+    }
+
+    .our-managment-catchword-side-header {
+        height: 31rem;
+    }
+
+    .our-managment-catchword-side-text-container {
+        width: 100%;
+    }
+
+        .our-managment-catchword-side-text-container .title {
+            margin-left: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .our-managment-catchword-side-text-container .subtitle {
+            margin-top: 1.2rem;
+            margin-left: 1.2rem;
+            margin-right: 1.2rem;
+            text-align: justify;
+        }
+    /*references start*/
+    #who-work-with-side {
+        margin-top: 1rem;
+        background-color: white;
+    }
+
+    .who-work-with-side-text-container .title {
+        width: 90%;
+        font-size: 1.3rem;
+    }
+
+    .who-work-with-side-text-container .subtitle {
+        width: 90%;
+        text-align: justify;
+        font-size: 1rem;
+    }
+    /*references finish*/
+
+
+    /*we work with start*/
+    .who-work-with-side-image-container {
+        width: 95%;
+    }
+
+    .who-work-with-side-image-container-col .image-container {
+        float: left;
+        width: 30%;
+        height: auto;
+        margin: 20px 5px 0px 10px;
+    }
+
+        .who-work-with-side-image-container-col .image-container img {
+            width: 100%;
+            height: auto;
+        }
+    /*we work with finish*/
+}
+
+@media only screen and (max-width: 1280px) and (min-width:991.99px) {
+    #services-photo-header .header-content {
+        padding: 18% 0px 0px 6%;
+    }
+
+    .our-managment-need-you-know-big-tab {
+        width: 95%;
+    }
+
+    .our-managment-need-you-know-tab {
+        margin-right: -2.8rem;
+    }
+
+    .our-managment-need-you-know-big-tab-title {
+        left: 1%;
+    }
+    /*we work with start*/
+    .who-work-with-side-image-container {
+        width: 95%;
+    }
+
+    .who-work-with-side-image-container-col .image-container {
+        float: left;
+        width: 23.4%;
+        height: auto;
+        margin: 20px 5px 0px 10px;
+    }
+
+        .who-work-with-side-image-container-col .image-container img {
+            width: 100%;
+            height: auto;
+        }
+    /*we work with finish*/
+    .our-managment-mision-design-row-two-content-inside {
+        align-items: center;
+    }
+}
+
+
+
+/*abouot finish*/
+
+/*sesrvices start*/
+@media only screen and (max-width: 575.98px) {
+    .header-content-uptitle {
+        font-size: 1rem;
+    }
+
+    .header-content-title {
+        font-size: 1.1rem;
+    }
+
+    .header-content-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+    /*header start*/
+    #services-photo-header .header-content {
+        width: 90%;
+        margin: auto;
+        padding: 0;
+        padding-top: 12rem !important;
+    }
+    /*header finish*/
+
+    .computer-section-row-two {
+        width: 100% !important;
+    }
+
+    .sas-details-second-container {
+        width: 90% !important;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width:470px) {
+    .computer-section-row-two {
+        width: 50% !important;
+        margin-bottom: 4rem;
+    }
+
+    .sas-details-second-container {
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 991.98px) {
+    /*header start*/
+    #services-photo-header .header-content {
+        width: 90%;
+        margin: auto;
+        padding: 0;
+        padding-top: 17rem;
+    }
+    /*header finish*/
+
+    /*services and support section computer start*/
+    .services-and-support-section-content {
+        width: 90%;
+        margin: auto;
+    }
+
+        .services-and-support-section-content .title {
+            font-size: 1.5rem;
+        }
+
+        .services-and-support-section-content .subtitle {
+            font-size: 1.1rem;
+        }
+
+    .services-and-support-section-computer {
+        padding: 10px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .computer-section-row-one {
+        width: 100%;
+    }
+
+    .computer-section-row-two {
+        width: 50%;
+        margin-top: 3rem;
+        margin-bottom: 6rem;
+    }
+
+    .computer-section-row-three {
+        width: 100%;
+    }
+
+    .services-and-support-section-bottom {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 10px;
+    }
+
+    .computer-section-bottom-row-one {
+        width: 100%;
+        flex-direction: row-reverse;
+        text-align: left;
+    }
+
+    .computer-section-bottom-row-two {
+        width: 100%;
+    }
+    /*services and support section computer finish*/
+
+    /*.why-choose-our-services-side start*/
+    #why-choose-our-services-side {
+        height: 100%;
+        margin-top: 1rem;
+    }
+
+    .why-choose-our-services-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .why-choose-our-services-cards-design {
+        min-width: 0;
+        max-width: 90%;
+        height: auto;
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .why-choose-our-services-card-title {
+        margin: 10px 0px;
+    }
+
+    .why-choose-our-services-side-content {
+        width: 90%;
+        margin: auto;
+        padding: 1rem 0;
+    }
+
+        .why-choose-our-services-side-content h2 {
+            line-height: 1.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-choose-our-services-side-content p {
+            line-height: 1.2rem;
+        }
+
+    .parallax {
+        min-height: 168%;
+        max-height: 168%;
+    }
+    /*.why-choose-our-services-side fınısh*/
+
+    /*services-and-support-details start*/
+    #services-and-support-details {
+        background-color: white;
+        width: 100%;
+        padding-top: 1rem;
+    }
+
+    .services-and-support-details-content {
+        width: 90%;
+        margin: auto;
+        padding: 0;
+    }
+
+    .sas-flex-setting-first-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sas-details-first-container-photo {
+        width: 90%;
+        margin: auto;
+        position: initial;
+        right: 0;
+        text-align: center;
+    }
+
+        .sas-details-first-container-photo img {
+            max-width: 100%;
+        }
+
+    .services-and-support-details-container {
+        max-width: 90%;
+        margin: auto;
+    }
+
+    .sas-flex-setting-second-container {
+        flex-direction: column-reverse;
+    }
+
+    .sas-details-second-container {
+        right: 0;
+        width: 90%;
+        margin: auto;
+        margin-top: 1rem;
+    }
+    /*services-and-support-details finish*/
+}
+
+@media only screen and (max-width: 1280px) {
+    .why-choose-our-services-cards-design {
+        margin-left: 0;
+        min-width: 30%;
+    }
+
+    .services-and-support-section-computer {
+        align-items: center;
+        padding: 10px 2px;
+    }
+
+    .sas-details-first-container {
+        width: 110%;
+        margin-top: 0;
+    }
+
+    .sas-details-second-container {
+        width: 110%;
+        margin-top: 0;
+    }
+
+    .sas-flex-setting-first-container {
+        align-items: center;
+    }
+
+    .sas-flex-setting-second-container {
+        align-items: center;
+    }
+
+    .sas-details-first-container-photo {
+        padding-top: 0px;
+        width: 125%;
+    }
+
+        .sas-details-first-container-photo img {
+            width: 100%;
+        }
+}
+
+/*services finish*/
+
+
+

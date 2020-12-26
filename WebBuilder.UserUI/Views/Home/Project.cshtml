@@ -1,0 +1,294 @@
+﻿@model UiDataService
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+    var projectMessages = Model.ProjectService.GetList(x => x.isActive == true && x.isDelete == false).Result;
+    var categories = Model.CategoryService.GetList(x => x.isActive == true && x.isDelete == false).Result.Data;
+    List<Project> myData = new List<Project>();
+    if (projectMessages.Status == Enums.Status.Success)
+    {
+        myData = projectMessages.Data;
+    }
+    string Func(List<Category> cat)
+    {
+        return "";
+    }
+}
+<section id="introduction-page-header">
+    <div class="bg-image"></div>
+    <div class="header-text-side">
+        <p class="title"> VFS 1500 D - Foil Slitting Machine with Friction Shaft and Circular Blades </p>
+        <p class="subtitle">Home >>  Products >> Cutting & Slicing >>  PVC Folyo</p>
+    </div>
+</section>
+
+<section id="introduction-general-features">
+
+
+    <div class="introduction-background-img-container">
+        <img src="~/WebBuilderContent/Images/General/intro-background-img.png" alt="">
+    </div>
+
+
+    <div class="introduction-general-features-text-container">
+
+        <div class="introduction-general-features-title">
+            <p><i class="fas fa-circle-notch"></i>General Features</p>
+        </div>
+
+        <div class="vr-container">
+            <div class="vrvrvr"></div>
+            <div class="vrvr"></div>
+        </div>
+
+
+        <div class="introduction-general-features-text">
+            <p>
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
+                in their exact original form, accompanied by English versions from the 1914 translation by H.
+                Rackham accompanied by English versions from the 1914.
+            </p>
+            <div class="introduction-general-features-list">
+                <ul class="list-eleman">
+                    <li>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</li>
+                    <li>Two winder shaft and alsa available as friction winding shaft.</li>
+                    <li>Deionization is available.</li>
+                    <li>Every the Lorem Ipsum generators on the Internet. Two winder shaft and alsa available as friction winding shaft.</li>
+                    <li>Seven thinks shaft and alsa available as friction winding.</li>
+                </ul>
+            </div>
+            <p>
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
+                in their exact original form, accompanied by English versions from the 1914 translation by H.
+                Rackham accompanied by English versions from the 1914.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="introduction-general-features-slider-container">
+        <div class="introduction-general-features-slider-img">
+            <img src="~/WebBuilderContent/Images/General/introduction-detail-1.png" alt="">
+            <p class="title">Colourful PVC Monitor with Easy Control and Multilingual Speciality</p>
+        </div>
+        <div class="introduction-general-features-slider-img">
+            <img src="~/WebBuilderContent/Images/General/introduction-detail-1.png" alt="">
+            <p class="title">Colourful PVC Monitor with Easy Control and Multilingual Speciality</p>
+        </div>
+        <div class="introduction-general-features-slider-img">
+            <img src="~/WebBuilderContent/Images/General/introduction-detail-1.png" alt="">
+            <p class="title">Colourful PVC Monitor with Easy Control and Multilingual Speciality</p>
+        </div>
+        <div class="introduction-general-features-slider-img">
+            <img src="~/WebBuilderContent/Images/General/introduction-detail-1.png" alt="">
+            <p class="title">Colourful PVC Monitor with Easy Control and Multilingual Speciality</p>
+        </div>
+    </div>
+
+
+</section>
+
+<section id="introduction-general-features-description">
+    <div class="igf-background"></div>
+
+    <div class="igf-container">
+        <div class="igf-container-content">
+            <p class="icon"><i class="fas fa-gavel"></i></i></p>
+            <p class="title">5-30 m/dk</p>
+            <p class="subtitle">Written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p>
+        </div>
+
+        <div class="igf-container-content">
+            <p class="icon"><i class="fas fa-ruler-combined"></i></p>
+            <p class="title">5-30 m/dk</p>
+            <p class="subtitle">Written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p>
+        </div>
+
+        <div class="igf-container-content">
+            <p class="icon"><i class="fas fa-grip-lines"></i></p>
+            <p class="title">5-30 m/dk</p>
+            <p class="subtitle">Written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p>
+        </div>
+
+        <div class="igf-container-content">
+            <p class="icon"><i class="fas fa-wave-square"></i></p>
+            <p class="title">5-30 m/dk</p>
+            <p class="subtitle">Written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p>
+        </div>
+
+        <div class="igf-container-content">
+            <p class="icon"><i class="fas fa-bolt"></i></p>
+            <p class="title">5-30 m/dk</p>
+            <p class="subtitle">Written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="introduction-technical-details">
+    <div class="introduciton-tech-title-container">
+        <p class="title"><i class="fas fa-hammer" style="padding-right: 7px;"></i>Technical Details</p>
+        <button class="details-button">Download PDF</button>
+    </div>
+
+    <div class="vr-container-two">
+        <div class="vrvrvr-two"></div>
+        <div class="vrvr-two"></div>
+    </div>
+
+    <div class="introduction-table-side">
+        <table class="itb-table-1">
+            <thead>
+                <tr>
+                    <th colspan="4">SPECIFICATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>System Dimensions</td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Door Mounted Substrate End
+                        Effector
+                    </td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contrary to popular belief, Lorem Ipsum is not simply random text. It has</td>
+                    <td>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the</td>
+                </tr>
+                <tr>
+                    <td>System Dimensions</td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Door Mounted Substrate End
+                        Effector
+                    </td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <table class="itb-table-1">
+            <thead>
+                <tr>
+                    <th colspan="4">Requirements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>System Dimensions</td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contrary to popular belief, Lorem Ipsum is not simply random text. It has</td>
+                    <td>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the</td>
+                </tr>
+                <tr>
+                    <td>
+                        Door Mounted Substrate End
+                        Effector
+                    </td>
+                    <td>
+                        Main - 25” H x 32” W x 24” D designed to fit on desktop, lab bench or glovebox
+                        Half Rack - 11”H x 12”W x 21”D for RF Power Supply
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</section>
+
+<section id="introduction-catchword-side">
+    <div class="introduction-catchword-side-header"></div>
+
+    <div class="introduction-catchword-side-big-container">
+        <div class="introduction-catchword-side-text-container">
+            <p class="title"><img src="~/WebBuilderContent/Images/General/intro-bottom-header-icon.png"> Built on Trust</p>
+            <p class="subtitle">
+                Technologies focuses on technology and innovation in the areas of thin film
+                deposition with a special focus on Atomic Lr Deposition dup. Nemo enim ipsam voluptatem quia
+                voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolo quirandfnag ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet magni
+                dolores eos rationebkh voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+                quia dolor sit amet.
+            </p>
+        </div>
+        <div class="introduction-catchword-contact-us-button">
+            <button>Contact Us</button>
+        </div>
+    </div>
+
+
+</section>
+
+<section id="introduction-bottom-images">
+    <div class="introduction-bottom-images-text-cont">
+        <p class="title"><i class="fas fa-dice-two" style="padding-right: 7px;"></i>Similar Products</p>
+        <div class="buttons">
+            <button><i class="fas fa-caret-left"></i></button>
+            <button><i class="fas fa-caret-right"></i></button>
+        </div>
+    </div>
+
+    <div class="vr-container-two">
+        <div class="vrvrvr-two"></div>
+        <div class="vrvr-two"></div>
+    </div>
+
+    <div class="introduction-bottom-images-container">
+
+        <div class="ib-img-container">
+            <img src="~/WebBuilderContent/Images/General/bottom-image-slider.png" alt="">
+            <p class="title">VSL 800 L5-P2C</p>
+            <p class="subtitle">Pvc Panel Lamination Machine With SOLVENT Glue Monoblock 5M</p>
+        </div>
+
+        <div class="ib-img-container">
+            <img src="~/WebBuilderContent/Images/General/bottom-image-slider.png" alt="">
+            <p class="title">VSL 800 L5-P2C</p>
+            <p class="subtitle">Pvc Panel Lamination Machine With SOLVENT Glue Monoblock 5M</p>
+        </div>
+
+        <div class="ib-img-container">
+            <img src="~/WebBuilderContent/Images/General/bottom-image-slider.png" alt="">
+            <p class="title">VSL 800 L5-P2C</p>
+            <p class="subtitle">Pvc Panel Lamination Machine With SOLVENT Glue Monoblock 5M</p>
+        </div>
+
+        <div class="ib-img-container">
+            <img src="~/WebBuilderContent/Images/General/bottom-image-slider.png" alt="">
+            <p class="title">VSL 800 L5-P2C</p>
+            <p class="subtitle">Pvc Panel Lamination Machine With SOLVENT Glue Monoblock 5M</p>
+        </div>
+
+    </div>
+
+</section>
