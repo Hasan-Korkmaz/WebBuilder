@@ -1,8 +1,6 @@
 ﻿using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using WebBuilder.Extension.DataExtension;
@@ -56,6 +54,8 @@ namespace Data.Concrete.Context
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<GlobalTextData> GlobalTextDatas { get; set; }
+
+        public DbSet<LocalizedProperty> LocalizedProperties { get; set; }
 
     }
 }

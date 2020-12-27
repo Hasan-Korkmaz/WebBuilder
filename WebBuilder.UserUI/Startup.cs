@@ -27,7 +27,7 @@ namespace WebBuilder.UserUI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-          
+
         }
         public IConfiguration Configuration { get; }
 
@@ -70,19 +70,19 @@ namespace WebBuilder.UserUI
             services.AddScoped<UiDataService>();
             #endregion
             services.AddDbContext<WebBuilderContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeveloperMsSql")));
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-         
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 using (var client = new WebBuilderContext())
                 {
-                    client.Database.EnsureDeleted();
+                    //client.Database.EnsureDeleted();
                     client.Database.EnsureCreated();
                 }
             }
@@ -99,11 +99,11 @@ namespace WebBuilder.UserUI
 
             }
             app.UseAuthentication();
-            app.UseSession(); 
-           
+            app.UseSession();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-           
+
 
             app.MapWhen(context => !isBackOfisRequest(context), appBuilder =>
             {
@@ -142,7 +142,7 @@ namespace WebBuilder.UserUI
 
         public bool isBackOfisRequest(HttpContext context)
         {
-            
+
             if (context.Request.Path.StartsWithSegments("/backofis"))
             {
                 Debug.WriteLine("Request Type: /backofis request");
