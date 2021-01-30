@@ -1,11 +1,14 @@
 ﻿using Data.Abstract;
+using Data.IncludeLibrary;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
+using WebBuilderExceptionLibrary;
 
 namespace Data.Concrete
 {
@@ -29,6 +32,7 @@ namespace Data.Concrete
         {
             using (TRepository Context = new TRepository())
             {
+                Context.Attach(entity);
                 var state = Context.Entry(entity);
                 state.State = EntityState.Added;
                 await Context.SaveChangesAsync().ConfigureAwait(false);
@@ -43,7 +47,9 @@ namespace Data.Concrete
         {
             using (TRepository Context = new TRepository())
             {
+                Context.Attach(entity);
                 var state = Context.Entry(entity);
+                
                 state.State = EntityState.Added;
                 await Context.SaveChangesAsync().ConfigureAwait(false);
             }
@@ -130,11 +136,11 @@ namespace Data.Concrete
             
             using (TRepository Context = new TRepository())
             {
-                var q =
+                var q=
                  await Context.Set<TEntity>().Where(entity => entity.isDelete == false)
                 .Where(condition ?? (entity => true))
                 .ToListAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(false) ?? throw new CannotFindEntityException();
                 return q;
             }
         }
@@ -147,7 +153,8 @@ namespace Data.Concrete
         {
             using (TRepository Context = new TRepository())
             {
-                var entity = await Context.Set<TEntity>().Where(x => x.isDelete == false && x.Id == id).FirstOrDefaultAsync().ConfigureAwait(false);
+                if (id == 0) throw new CannotFindEntityException(id);
+                var entity = await Context.Set<TEntity>().Where(x => x.isDelete == false && x.Id == id).FirstOrDefaultAsync().ConfigureAwait(false) ?? throw new CannotFindEntityException(id);
                 //if (!entity.Active) throw new CannotFindEntityException($"{id} idsine sahip entity aktif degil.");
                 return entity;
             }

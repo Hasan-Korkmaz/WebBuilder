@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{77BCC491-D965-4E09-BECF-A80FA91E5BC8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBuilderExceptionLibrary", "WebBuilderExceptionLibrary\WebBuilderExceptionLibrary.csproj", "{007D387E-C4C5-4433-91F1-4216DAFABA01}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{7F9B8AC5-A194-42FC-BBFB-BC2E6F780737}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBuilder.Core", "WebBuilder.Core\WebBuilder.Core.csproj", "{BD61E67C-060B-4A4D-A605-660BEF41D13F}"
@@ -42,6 +44,10 @@ Global
 		{77BCC491-D965-4E09-BECF-A80FA91E5BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BCC491-D965-4E09-BECF-A80FA91E5BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BCC491-D965-4E09-BECF-A80FA91E5BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007D387E-C4C5-4433-91F1-4216DAFABA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007D387E-C4C5-4433-91F1-4216DAFABA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007D387E-C4C5-4433-91F1-4216DAFABA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007D387E-C4C5-4433-91F1-4216DAFABA01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F9B8AC5-A194-42FC-BBFB-BC2E6F780737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F9B8AC5-A194-42FC-BBFB-BC2E6F780737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F9B8AC5-A194-42FC-BBFB-BC2E6F780737}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,5 +74,38 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BB810F4-CB39-4FAC-ACB3-BD7DAB7186C1}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://milvasoft.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WebBuilder.UserUI\\WebBuilder.UserUI.csproj
+		SccProjectName1 = WebBuilder.UserUI
+		SccLocalPath1 = WebBuilder.UserUI
+		SccProjectUniqueName2 = Entity\\Entity.csproj
+		SccProjectName2 = Entity
+		SccLocalPath2 = Entity
+		SccProjectUniqueName3 = Data\\Data.csproj
+		SccProjectName3 = Data
+		SccLocalPath3 = Data
+		SccProjectUniqueName4 = WebBuilderExceptionLibrary\\WebBuilderExceptionLibrary.csproj
+		SccProjectName4 = WebBuilderExceptionLibrary
+		SccLocalPath4 = WebBuilderExceptionLibrary
+		SccProjectUniqueName5 = Identity\\Identity.csproj
+		SccProjectName5 = Identity
+		SccLocalPath5 = Identity
+		SccProjectUniqueName6 = WebBuilder.Core\\WebBuilder.Core.csproj
+		SccProjectName6 = WebBuilder.Core
+		SccLocalPath6 = WebBuilder.Core
+		SccProjectUniqueName7 = WebBuilder.Business\\WebBuilder.Business.csproj
+		SccProjectName7 = WebBuilder.Business
+		SccLocalPath7 = WebBuilder.Business
+		SccProjectUniqueName8 = WebBuilder.Middleware\\WebBuilder.Middleware.csproj
+		SccProjectName8 = WebBuilder.Middleware
+		SccLocalPath8 = WebBuilder.Middleware
+		SccProjectUniqueName9 = WebBuilder.Extension\\WebBuilder.Extension.csproj
+		SccProjectName9 = WebBuilder.Extension
+		SccLocalPath9 = WebBuilder.Extension
 	EndGlobalSection
 EndGlobal

@@ -39,23 +39,15 @@ namespace WebBuilder.Extension.DataExtension
             #endregion
 
             #region Slider
-            var sliderTr1 = new Slider() { Id = 1, Name = "MilvaSlayt1", AltValue = "MilvaSlayt1", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 1, ImageURL = sliderPath + "1.jpg" };
-            var sliderTr2 = new Slider() { Id = 2, Name = "MilvaSlayt2", AltValue = "MilvaSlayt2", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 1, ImageURL = sliderPath + "2.jpg" };
-            var sliderTr3 = new Slider() { Id = 3, Name = "MilvaSlayt3", AltValue = "MilvaSlayt3", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 1, ImageURL = sliderPath + "3.jpg" };
-            var sliderTr4 = new Slider() { Id = 4, Name = "MilvaSlayt4", AltValue = "MilvaSlayt4", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 1, ImageURL = sliderPath + "4.jpg" };
+            var slider = new Slider() { Id = 1, InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false,SliderName="AnasayfaSlider",SliderDescription="Bu slider anasayfada bulunur ve dil desteği vardır"};
+           
 
-            var sliderEn1 = new Slider() { Id = 5, Name = "MilvaSlayt1", AltValue = "MilvaSlayt1", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 2, ImageURL = sliderPath + "5.jpg" };
-            var sliderEn2 = new Slider() { Id = 6, Name = "MilvaSlayt2", AltValue = "MilvaSlayt2", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 2, ImageURL = sliderPath + "6.jpg" };
-            var sliderEn3 = new Slider() { Id = 7, Name = "MilvaSlayt3", AltValue = "MilvaSlayt3", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 2, ImageURL = sliderPath + "7.jpg" };
-            var sliderEn4 = new Slider() { Id = 8, Name = "MilvaSlayt4", AltValue = "MilvaSlayt4", InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false, LanguageId = 2, ImageURL = sliderPath + "8.jpg" };
-            sliderList.Add(sliderTr1);
-            sliderList.Add(sliderTr2);
-            sliderList.Add(sliderTr3);
-            sliderList.Add(sliderTr4);
-            sliderList.Add(sliderEn1);
-            sliderList.Add(sliderEn2);
-            sliderList.Add(sliderEn3);
-            sliderList.Add(sliderEn4);
+
+
+            sliderList.Add(slider);
+        
+
+
             #endregion
 
             #region Menu

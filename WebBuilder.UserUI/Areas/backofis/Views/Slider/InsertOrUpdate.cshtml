@@ -1,0 +1,252 @@
+﻿@model Entity.Slider
+@{
+    Layout = null;
+}
+
+
+<!--NAVS LİNK -->
+<!--<div class="card-header p-0 border-bottom-0">
+    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="custom-tabs-four-tr-tab" data-toggle="pill" href="#tab-tr" role="tab" aria-controls="language-tr-tab" aria-selected="true">TR</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-four-en-tab" data-toggle="pill" href="#tab-en" role="tab" aria-controls="language-en-tab" aria-selected="false">EN</a>
+        </li>
+    </ul>
+</div>-->
+<!-- NAVS CONTENT-->
+<!--INSERT OR UPDATE MODAL-->
+<div class="modal fade" id="ImageModal">
+    <div class="modal-dialog modal-m">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Resimler</h4>
+                <button type="button" class="close" onclick="ImageModalToggle()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <div class="pb-2">
+                    <div class="col-4" style="padding:0">
+                        <div onclick="NewImage()" class="btn btn-block btn-success btn-sm">Yeni</div>
+                    </div>
+                </div>
+                <div id="ImageBodyContent" class="d-flex flex-wrap">
+                   
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.InsertOrUpdate == WebBuilder.Core.Util.Enums.ViewStatus.Update)
+{
+    <div class="card-body">
+        <div class="tab-content" id="custom-tabs-four-tabContent">
+            <!--NAV 1 CONTENT-->
+            <div class="tab-pane fade show active" id="tab-tr" role="tabpanel" aria-labelledby="language-tr-tab">
+                <form class="form-horizontal" id="postForm">
+                    <div class="card-body">
+                        <input hidden name="id" value="@Model.Id" />
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-4 col-form-label">slider Adı :</label>
+                            <div class="col-sm-8">
+                                <input name="Name" class="form-control" type="text" value="@Model.SliderName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ShortName" class="col-sm-4 col-form-label">Dil Kısaltması :</label>
+                            <div class="col-sm-8">
+                                <input name="ShortName" class="form-control" type="text" value="@Model.SliderDescription">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    @if (Model.isActive)
+                                    {
+                                        <input type="checkbox" value="true" checked name="isActive" onclick="ToggleValueChange(this)" class="toggle-value-changer custom-control-input" id="customSwitch3">
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="false" name="isActive" onclick="ToggleValueChange(this)" class="toggle-value-changer custom-control-input" id="customSwitch3">
+                                    }
+                                    <label class="custom-control-label" for="customSwitch3"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-primary" onclick="InserOrUpdate('#postForm')">Kaydet</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="card-body">
+        <div class="tab-content" id="custom-tabs-four-tabContent">
+            <!--NAV 1 CONTENT-->
+            <div class="tab-pane fade show active" id="tab-tr" role="tabpanel" aria-labelledby="language-tr-tab">
+                <form class="form-horizontal" id="postForm">
+                    <div class="card-body">
+                        <input hidden name="id" />
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-4 col-form-label">İsim :</label>
+                            <div class="col-sm-8">
+                                <input name="SliderName" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
+                            <div class="col-sm-8">
+                                <input name="SliderDescription" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <input type="checkbox" value="true" checked name="isActive" onclick="ToggleValueChange(this)" class="toggle-value-changer custom-control-input" id="customSwitch3">
+                                    <label class="custom-control-label" for="customSwitch3"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="isActive" class="col-sm-4 col-form-label">Resimler</label>
+                            <div class="col-sm-8 pr-5 pl-5 d-flex align-items-center">
+                                <div onclick="ImageModalToggle()" class="btn btn-block btn-success btn-sm">Resim Seç</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-primary" onclick="InserOrUpdate('#postForm')">Kaydet</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+
+}
+
+<script>
+
+ 
+
+  
+    var InsertOrUpdateValue = "@ViewBag.InsertOrUpdate"
+    function InserOrUpdate(form) {
+         var postDataObject  =new FormData($(form)[0]);;
+         if (InsertOrUpdateValue == "Insert") {
+             $.ajax({
+                 url: "/backofis/slider/Add",
+                 type: "POST",
+                 data: postDataObject,
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+                 success: function (json) {
+                     if (json.statusCode === 200) {
+                         toastr["success"](json.message, "Başarılı")
+                         table.ajax.reload();
+                     }
+                     else if (json.statusCode === 500) {
+                         toastr["error"](json.message, "Sunucu tabanlı hata")
+                     }
+                     return json.data;
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                     toastr["error"]("Sunucuda hata oluştu.", "İletişim Hatası !")
+                 }
+             });
+         }
+         else {
+             $.ajax({
+                 url: "/backofis/slider/Update",
+                 type: "POST",
+                 data: postDataObject,
+                 cache: false,
+                 success: function (json) {
+                     if (json.statusCode === 200) {
+                         toastr["success"](json.message, "Başarılı")
+                         table.ajax.reload();
+                     }
+                     else if (json.statusCode === 500) {
+                         toastr["error"](json.message, "Sunucu tabanlı hata")
+                     }
+                     return json.data;
+                     $(location).html(response);
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                     toastr["error"]("Sunucuda hata oluştu.", "İletişim Hatası !")
+                 }
+             });
+         }
+         insertOrUpdateModal.modal("toggle");
+    }
+</script>
+<!--Image Operations-->
+<script>
+    var ImageId = 0;
+
+    console.log("Ok")
+    function ImageModalToggle() {
+        $('#ImageModal').modal('toggle');
+    }
+    function NewImage() {
+
+        var newImageItem = '<div class="ImageItem" img-id="' + ImageId + '">' +
+            '<div  class="image-item-container">' +
+            '<img class="image-item-container-img">' +
+            '<input class="img-preview-tracker  d-none" type="file" id="ImgInp' + ImageId + '" name="SliderImages[' + ImageId + '].Image" form="postForm"/>' +
+            '<div class="d-flex align-items-center"><div style="width:40px">Sıra : </div><input class="img-order" style="margin-left:10px;width:70px;height:22px" type="number" name="SliderImages[' + ImageId + '].Order" form="postForm"></div>' +
+            '<div class="d-flex align-items-center"><div style="width:40px">ALT : </div><input class="img-alt" style="margin-left:10px;width:70px;height:22px" type="text" name="SliderImages[' + ImageId + '].AltValue" form="postForm"></div>' +
+            '<label for="ImgInp' + ImageId + '" class="img-label btn btn-block btn-primary btn-sm m-0">Resim Yükle</label>' +
+            '<div class="image-item-close" onclick="DeleteImage(this)">X</div>' +
+            '</div>' +
+            '</div>';
+        ImageId++;
+        $('#ImageBodyContent').append(newImageItem);
+
+    }
+    function DeleteImage(element) {
+        $(element).parents('.ImageItem').remove();
+        var ImagecontainerChild = $('#ImageBodyContent').children();
+        console.log(ImagecontainerChild.length);
+        ImageId = 0;
+        ImagecontainerChild.each(function (index, element) {
+            $(element).attr('img-id', ImageId);
+            $(element).find('.img-preview-tracker').attr('id', "ImgInp" + ImageId);
+            $(element).find('.img-preview-tracker').attr('name', "SliderImages[" + ImageId + "].Image");
+            $(element).find('.img-order').attr('name', "SliderImages[" + ImageId + "].Order");
+            $(element).find('.img-label').attr('for', "ImgInp" + ImageId);
+            ImageId++;
+        });
+
+    }
+    function ImagePreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            var img = $(input).siblings('img');
+            console.log(img);
+            reader.onload = function (e) {
+                $(img).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
