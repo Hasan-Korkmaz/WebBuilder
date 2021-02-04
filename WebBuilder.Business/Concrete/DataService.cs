@@ -124,6 +124,25 @@ namespace WebBuilder.Business.Concrete
             return result;
         }
 
+        public virtual async Task<IResult<TEntity>> DeleteExp(Expression<Func<TEntity, bool>> expression )
+        {
+        
+            var result = new Result<TEntity>();
+            try
+            {
+               
+                await _dataProvider.DeleteExpression(expression);
+                result.Status = Core.Util.Enums.Status.Success;
+                result.Message = "Silme işlemi başarılı bir şekilde gerçekleştirildi.";
 
+            }
+            catch (Exception ex)
+            {
+                result.Status = Core.Util.Enums.Status.Error;
+                result.Message = "Silme işlemi yapılırken bir servis hata oluştu.";
+            }
+            return result;
+        
+    }
     }
 }

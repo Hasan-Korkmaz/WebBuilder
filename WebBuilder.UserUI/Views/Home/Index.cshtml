@@ -2,11 +2,11 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var slider = Model.SliderService.GetList(x => x.isActive == true).Result;
+    var slider = Model.SliderService.Get(x => x.isActive == true && x.SliderTag.Contains("Anasayfa")).Result;
     var languageServisDatas = Model.LanguageService.GetLanguageURL(x => x.isActive == true).Result;
     var productServisDatas = Model.ProductService.GetList(x => x.isActive == true).Result;
 
-    List<Slider> sliderList = null;
+    List<SliderImage> sliderImgList = null;
     List<LanguageWithUrl> languageList = null;
     List<Product> productList = null;
     if (languageServisDatas.Status == WebBuilder.Core.Util.Enums.Status.Success)
@@ -15,7 +15,7 @@
     }
     if (slider.Status == Enums.Status.Success)
     {
-        sliderList = slider.Data.ToList();
+        sliderImgList = slider.Data.SliderImages;
     }
     if (productServisDatas.Status == Enums.Status.Success)
     {
@@ -23,58 +23,49 @@
     }
 
 }
-<!--<div id="mainSwiper" class="swiper-container">
-    <div class="swiper-wrapper">
-        @*@foreach (var item in sliderList)
-        {
-            var url = item.ImageURL;
-            var altValue = item.AltValue;
-            <div class="swiper-slide"><div style="width:100%;height:600px;background-image:url('@url');background-repeat:no-repeat;background-position:center;background-size: cover;opacity:0.8;"></div></div>
-        }*@
-    </div>
-    <!-- Add Scrollbar -->
-    <!--<div class="swiper-scrollbar"></div>
-</div>-->
 
-<div class="header-content-machine">
-    <div class="swiper-wrapperrrr" style="height:640px; overflow:hidden">
-        <div class="swiper-slideeee" style="height:640px; overflow:hidden">
-            <div style="        position: absolute;
-        z-index: 1;
+<style>
+    #mainSwiper{
         width: 100%;
-        height: 173px;
-        background: linear-gradient(360deg, #2f2f2f 0%, rgba(53, 53, 53, 0.6) 39.58%, rgba(57, 57, 57, 0.61) 39.59%, rgba(196, 196, 196, 0) 100%); transform: rotate(-180deg);"></div>
-            <div style="position: absolute; z-index:1; width: 100%; height: 640px; left: 0px; background: linear-gradient(360deg, rgba(49, 46, 46, 0.74) 0%, rgba(56, 56, 56, 0.44) 26.56%, rgba(57, 57, 57, 0.49) 38.54%, rgba(196, 196, 196, 0) 100%);">
+        height: 100%;
+    }
+    .swiper-wrapper
+    {
+        height:100% !important;
+    }
 
-            </div>
-
-
-            <div class="index-header-content-container">
-                <div class="index-header-content-up-title">What Is Lorem Ipsum</div>
-                <div class="index-header-content-big-title">Lorem Ipsum is that it has a more-or-less </div>
-                <div class="index-header-content-down-title"> in the middle of text. All the Lorem Ipsum</div>
-                <div class="header-slider-button-container">
-                    <button class="header-slider-button">START</button>
-                </div>
-            </div>
-
-            <img src="~/WebBuilderContent/Images/Slider/1.jpg" style="        width: 100%;
-        height: 660px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        filter: brightness(100%);
-        margin-top: -5px;
-        z-index: -1;"></img>
+    .swiper-slide
+    {
+        height:600px;
+    }
+    .swiper-slide img {
+        height:100%;
+        width:100%;
+        
+      
+    }
+   
+</style>
 
 
 
+
+<div id="mainSwiper">
+    <div class="swiper-wrapper">
+        @if (sliderImgList != null)
+        {
+            @foreach (var item in sliderImgList)
+            {
+        <div class="swiper-slide">
+            <img  src="@item.ImgLocation" />
 
         </div>
+              
+                
+            }
+        }
     </div>
 </div>
-
-
 
 <section id="specifications" class="center specifications">
 
@@ -155,7 +146,7 @@
     </div>
 </section>
 <section id="you-are-good" class="you-are-good">
-    <div class="you-are-good-container" >
+    <div class="you-are-good-container">
         <div><h2 class="you-are-good-title">@*@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title").Result.Data*@ You're in good company!</h2></div>
         <div class="you-are-good-description"> <span>@Model.GlobalTextDataService.GetKeyValue("you-are-good-company-title-subtext").Result.Data Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</span></div>
         <div class="you-are-good-item-container">
@@ -239,7 +230,7 @@
 </section>
 <section id="our-trademarkers" class="our-trademarkers">
     <div><h1 class="our-trademarkers-title"> @Model.GlobalTextDataService.GetKeyValue("our-trademarkers-title").Result.Data</h1></div>
-    <hr class="our-trademarkers-references-hr"/>
+    <hr class="our-trademarkers-references-hr" />
 
 
     <div id="ourTrademarkersSwiper" class="swiper-container">
@@ -287,10 +278,10 @@
             el: '.swiper-scrollbar',
             hide: true,
         },
-         autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
+        autoplay: {
+            delay: 5500,
+            disableOnInteraction: true,
+        },
         loop: true,
     });
     var referencesSwiper = new Swiper('#refencesSwiper', {

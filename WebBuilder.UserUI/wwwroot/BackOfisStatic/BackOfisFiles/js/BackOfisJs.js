@@ -65,11 +65,13 @@ function DataTable(tableId, url, type, columnList, data,) {
             type: type,
             data: data,
             dataSrc: function (json) {
+                console.log(json.data)
                 if (json.statusCode === 200) {
                     toastr["success"](json.message, "Başarılı")
                 }
                 else if (json.statusCode === 500) {
                     toastr["error"](json.message, "Sunucu tabanlı hata")
+                   
 
                 }
                 return json.data;

@@ -18,6 +18,7 @@ using WebBuilder.Middleware;
 using Microsoft.AspNetCore.Http;
 using WebBuilder.Middleware.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
+
 using System.Diagnostics;
 
 namespace WebBuilder.UserUI
@@ -42,9 +43,13 @@ namespace WebBuilder.UserUI
         {
             options.LoginPath = "/backofis/Account/Login/";
         });
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             #region DAL Resolver
             services.AddScoped<ILanguageDAL, EfLanguageDAL>();
             services.AddScoped<ISliderDAL, EfSliderDAL>();
+            services.AddScoped<ISliderImageDAL, EfSliderImageDAL>();
             services.AddScoped<IMenuDAL, EfMenuDAL>();
             services.AddScoped<ICategoryDAL, EfCategoryDAL>();
             services.AddScoped<IProductImageDAL, EfProductImageDAL>();
@@ -58,6 +63,7 @@ namespace WebBuilder.UserUI
             #region Menager Resolver
             services.AddScoped<ILanguageService, LanguageMenager>();
             services.AddScoped<ISliderService, SliderMenager>();
+            services.AddScoped<ISliderImageService, SliderImageMenager>();
             services.AddScoped<IMenuService, MenuMenager>();
             services.AddScoped<ICategoryService, CategoryMenager>();
             services.AddScoped<IProductImageService, ProductImageMenager>();
@@ -100,9 +106,9 @@ namespace WebBuilder.UserUI
             }
             app.UseAuthentication();
             app.UseSession(); 
-           
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
            
 
             app.MapWhen(context => !isBackOfisRequest(context), appBuilder =>

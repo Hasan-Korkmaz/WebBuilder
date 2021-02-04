@@ -64,6 +64,7 @@ namespace Data.Concrete
 
             using (TRepository Context = new TRepository())
             {
+                Context.Attach(entity);
                 var state = Context.Entry(entity);
                 state.State = EntityState.Modified;
                 await Context.SaveChangesAsync().ConfigureAwait(false);
@@ -123,7 +124,25 @@ namespace Data.Concrete
                 await Context.SaveChangesAsync().ConfigureAwait(false);
             }
         }
+        public virtual async Task DeleteExpression(Expression<Func<TEntity, bool>> condition = null)
+        {
 
+            using (TRepository Context = new TRepository())
+            {
+                var q =
+                 await Context.Set<TEntity>()
+                .Where(condition ?? (entity => true))
+                .ToListAsync()
+                .ConfigureAwait(false) ?? throw new CannotFindEntityException();
+                q.ForEach(x => {
+                    x.isDelete = true;
+                    x.DeletedDate = DateTime.Now;
+                });
+                Context.Attach(q);
+                Context.Entry(q);
+                Context.SaveChangesAsync().ConfigureAwait(false);
+            }
+        }
 
         /// <summary>
         ///  Returns all entities which active condition is true from database asynchronously.

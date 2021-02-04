@@ -58,6 +58,7 @@ namespace Data.Abstract
         /// <param name="entities"></param>
         /// <returns></returns>
         Task DeleteAsync(IEnumerable<TEntity> entities);
+        Task DeleteExpression(Expression<Func<TEntity, bool>> condition );
         Task AddAsync(TEntity entity);
         string Language { get; set; }
     }

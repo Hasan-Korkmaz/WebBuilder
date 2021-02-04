@@ -1,12 +1,14 @@
-﻿const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.menu-container-mobile');
-console.log(menu);
-menu.addEventListener('click', function () {
-    menu.classList.toggle('is-active');
-    menuLinks.classList.toggle('active');
-});
+﻿var menu = document.querySelector('#mobile-menu');
+var menuLinks = document.querySelector('.menu-container-mobile');
 
+if (menu != null) {
 
+    menu.addEventListener('click', function () {
+        menu.classList.toggle('is-active');
+        menuLinks.classList.toggle('active');
+    });
+       
+}
 function footerDisplayColumnItems(element) {
     //console.log("Trigger click Function")
     //console.log("TÄ±klanan Elemenet:");
@@ -41,9 +43,8 @@ function dropdownLanguageOnClick(element) {
         sibling.style.display = "block";
         icon.className = "fas fa-minus";
     }
-    console.log(sibling);
-    console.log(icon);
+
+
+
+
 }
-
-
-

@@ -1,6 +1,7 @@
 ﻿@model Entity.Slider
 @{
     Layout = null;
+    int indexer = 0;
 }
 
 
@@ -33,8 +34,28 @@
                     </div>
                 </div>
                 <div id="ImageBodyContent" class="d-flex flex-wrap">
-                   
-               
+                   @if (ViewBag.InsertOrUpdate == WebBuilder.Core.Util.Enums.ViewStatus.Update)
+                   {
+                       foreach (var item in Model.SliderImages.Where(x=> x.isActive==true && x.isDelete==false).ToList())
+                       {
+                           <div class="ImageItem" img-id="@(indexer)">
+                               <div class="image-item-container">
+                                   <!--ImgPreview-->
+                                   <img class="image-item-container-img" src="@item.ImgLocation">
+                                   <!--ImgUpdater-->
+                                   <input class="img-img-location   d-none" type="text" value="@item.ImgLocation" id="ImgLoc@(indexer)" name="SliderImages[@(indexer)].ImgLocation" form="postForm" />
+
+                                   <input class="img-preview-tracker  d-none" type="file" id="ImgInp@(indexer)" name="SliderImages[@(indexer)].Image" form="postForm" />
+                                   <div class="d-flex align-items-center"><div style="width:40px">Sıra : </div><input class="img-order" style="margin-left:10px;width:70px;height:22px" type="number" name="SliderImages[@(indexer)].Order" value="@item.Order" form="postForm"></div>
+                                   <div class="d-flex align-items-center"><div style="width:40px">ALT : </div><input class="img-alt" style="margin-left:10px;width:70px;height:22px" type="text" name="SliderImages[@(indexer)].AltValue" value="@item.AltValue" form="postForm"></div>
+                                   <label for="ImgInp@(indexer)" class="img-label btn btn-block btn-primary btn-sm m-0">Resim Yükle</label>
+                                   <div class="image-item-close" onclick="DeleteImage(this)">X</div>
+                               </div>
+            </div>
+                           indexer++;
+                       }
+                   }
+
                 </div>
             </div>
         </div>
@@ -52,17 +73,30 @@
                     <div class="card-body">
                         <input hidden name="id" value="@Model.Id" />
                         <div class="form-group row">
-                            <label for="Name" class="col-sm-4 col-form-label">slider Adı :</label>
+                            <label for="Name" class="col-sm-4 col-form-label">Slider Adı :</label>
                             <div class="col-sm-8">
-                                <input name="Name" class="form-control" type="text" value="@Model.SliderName">
+                                <input name="SliderName" class="form-control" type="text" value="@Model.SliderName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="SliderTag" class="col-sm-4 col-form-label">Tasarımcı Tag:</label>
+                            <div class="col-sm-8">
+                                <input name="SliderTag" class="form-control" type="text" value="@Model.SliderTag">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="ShortName" class="col-sm-4 col-form-label">Dil Kısaltması :</label>
                             <div class="col-sm-8">
-                                <input name="ShortName" class="form-control" type="text" value="@Model.SliderDescription">
+                                <input name="SliderDescription" class="form-control" type="text" value="@Model.SliderDescription">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="isActive" class="col-sm-4 col-form-label">Resimler</label>
+                            <div class="col-sm-8 pr-5 pl-5 d-flex align-items-center">
+                                <div onclick="ImageModalToggle()" class="btn btn-block btn-success btn-sm">Resim Seç</div>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
                             <div class="col-sm-8 d-flex align-items-center">
@@ -108,6 +142,12 @@ else
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="SliderTag" class="col-sm-4 col-form-label">Tasarımcı Tag:</label>
+                            <div class="col-sm-8">
+                                <input name="SliderTag" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
                             <div class="col-sm-8">
                                 <input name="SliderDescription" class="form-control" type="text">
@@ -122,6 +162,7 @@ else
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="isActive" class="col-sm-4 col-form-label">Resimler</label>
                             <div class="col-sm-8 pr-5 pl-5 d-flex align-items-center">
@@ -144,13 +185,10 @@ else
 }
 
 <script>
-
- 
-
-  
     var InsertOrUpdateValue = "@ViewBag.InsertOrUpdate"
     function InserOrUpdate(form) {
-         var postDataObject  =new FormData($(form)[0]);;
+        console.log(form);
+         var postDataObject  =new FormData($(form)[0]);
          if (InsertOrUpdateValue == "Insert") {
              $.ajax({
                  url: "/backofis/slider/Add",
@@ -175,11 +213,14 @@ else
              });
          }
          else {
+             console.log("Updatess");
              $.ajax({
                  url: "/backofis/slider/Update",
                  type: "POST",
                  data: postDataObject,
                  cache: false,
+                 contentType: false,
+                 processData: false,
                  success: function (json) {
                      if (json.statusCode === 200) {
                          toastr["success"](json.message, "Başarılı")
@@ -189,7 +230,7 @@ else
                          toastr["error"](json.message, "Sunucu tabanlı hata")
                      }
                      return json.data;
-                     $(location).html(response);
+                     
                  },
                  error: function (xhr, ajaxOptions, thrownError) {
                      toastr["error"]("Sunucuda hata oluştu.", "İletişim Hatası !")
@@ -201,9 +242,7 @@ else
 </script>
 <!--Image Operations-->
 <script>
-    var ImageId = 0;
-
-    console.log("Ok")
+    var ImageId = @indexer;
     function ImageModalToggle() {
         $('#ImageModal').modal('toggle');
     }
@@ -239,6 +278,12 @@ else
 
     }
     function ImagePreview(input) {
+        console.log("İnputtt");
+        console.log("İnputttVALLL");
+        console.log($(input).val())
+        if (input.value.length == 0) {
+            $(img).attr('src', "");
+        }
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             var img = $(input).siblings('img');

@@ -16,6 +16,7 @@ namespace WebBuilder.Business.Abstract.DataServices
         Task<IResult<T>> Update(T entity);
         Task<IResult<T>> Delete(T entity);
         Task<IResult<T>> Get(Expression<Func<T, bool>> expression = null);
+        Task<IResult<T>> DeleteExp(Expression<Func<T, bool>> expression = null);
         Task<IResult<List<T>>> GetList(Expression<Func<T, bool>> expression = null);
     }
 }

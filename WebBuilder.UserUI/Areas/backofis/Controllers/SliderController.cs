@@ -16,11 +16,15 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
     {
         ISliderService sliderService;
         IHostingEnvironment environment;
+        ISliderImageService sliderImageService;
+        Core.Util.FileProccesing fileProccesing;
 
-        public SliderController(ISliderService sliderService, IHostingEnvironment environment)
+        public SliderController(ISliderService sliderService, ISliderImageService sliderImageService, IHostingEnvironment environment)
         {
             this.sliderService = sliderService;
+            this.sliderImageService = sliderImageService;
             this.environment = environment;
+            fileProccesing= new Core.Util.FileProccesing();
         }
         public ActionResult Index()
         {
@@ -40,7 +44,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
             if (searchInContext.Status == Status.Success)
             {
                 ViewBag.InsertOrUpdate = ViewStatus.Update;
-                return View("Slider/InsertOrUpdate", searchInContext.Data);
+                return View("InsertOrUpdate", searchInContext.Data);
             }
             else
             {
@@ -56,7 +60,6 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
         public async Task<ApiResponse> Add(Slider entity)
         {
             var files = Request.Form.Files;
-            Core.Util.FileProccesing fileProccesing = new Core.Util.FileProccesing();
             int indexer = 0;
             foreach (var item in files)
             {
@@ -64,7 +67,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
                 var fileName=fileProccesing.WriteFile(environment.WebRootPath + "\\WebBuilderContent\\Images\\Slider", item).Result;
                 if (fileName!=null)
                 {
-                    entity.SliderImages[indexer].ImgLocation =path+"\\"+ fileName;
+                    entity.SliderImages[indexer].ImgLocation ="\\WebBuilderContent\\Images\\Slider\\" + fileName;
                     entity.SliderImages[indexer].InsertedDate = DateTime.Now;
                     entity.SliderImages[indexer].isActive = true;
                     entity.SliderImages[indexer].isDelete = false;
@@ -121,6 +124,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
         public async Task<ApiResponse> Update(Slider entity)
         {
             var searchInContext = await this.sliderService.Get(x => x.Id == entity.Id);
+           
             if (searchInContext.Status == Status.Empty)
             {
                 return new ApiResponse { Message = searchInContext.Message, StatusCode = 203, DataStatus = false };
@@ -130,7 +134,52 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
                 return new ApiResponse { Message = searchInContext.Message, StatusCode = 500, DataStatus = false };
             }
             else if (searchInContext.Status == Status.Success)
-            {
+            {//Eski Resimleri Temiz
+                var sliderTemp = new List<SliderImage>();
+               
+                //Bu işlemden önce tüm resimleri sil
+                //İmgLocation varsa hiçbişey yapılmayacak öylece kalacak
+                //İmgLocation yoksa git ekle
+                foreach (var item in searchInContext.Data.SliderImages)
+                {
+                    await sliderImageService.Delete(item);
+                }
+                if (entity.SliderImages!=null)
+                {
+                    foreach (var item in entity.SliderImages)
+                    {
+                        //Resim varsa önceden sildiğim için şimdi yeniden devreye alıyorum
+                        if (!string.IsNullOrEmpty(item.ImgLocation))
+                        {
+                            item.isDelete = false;
+                            item.isActive = true;
+                            item.UpdatedDate = DateTime.Now;
+                        }
+                    }
+                }
+               
+                //Yeni resim işlemleri
+              
+                foreach (var item in entity.SliderImages.Where(x=> x.ImgLocation==null))
+                {
+                    if (item.Image!=null)
+                    {
+                        var path = environment.WebRootPath + "\\WebBuilderContent\\Images\\Slider";
+                        var fileName = fileProccesing.WriteFile(environment.WebRootPath + "\\WebBuilderContent\\Images\\Slider", item.Image).Result;
+                        if (fileName != null)
+                        {
+                            item.ImgLocation = "\\WebBuilderContent\\Images\\Slider\\" + fileName;
+                            item.InsertedDate = DateTime.Now;
+                            item.isActive = true;
+                            item.isDelete = false;
+                            item.Slider = entity;
+                            item.DeletedDate = DateTime.MinValue;
+                            item.UpdatedDate = DateTime.MinValue;
+                        }
+
+                    }
+
+                }
                 var serviceStatus = await this.sliderService.Update(entity);
                 if (serviceStatus.Status == Core.Util.Enums.Status.Success)
                 {

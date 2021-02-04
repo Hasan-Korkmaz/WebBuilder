@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Entity
@@ -11,5 +13,7 @@ namespace Entity
         public int Order { get; set; }
         public int SliderId { get; set; }
         public Slider Slider { get; set; }
+        [NotMapped]
+        public IFormFile Image { get; set; }
     }
 }

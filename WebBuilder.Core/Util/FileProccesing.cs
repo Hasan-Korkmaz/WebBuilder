@@ -19,7 +19,6 @@ namespace WebBuilder.Core.Util
                 FileInfo fileInfo = new FileInfo(formFile.FileName);
                 var fileExtension = fileInfo.Extension;
                 string newFileName = Guid.NewGuid().ToString()+fileExtension;
-                location = location.RemoveWhitespace();
                 if (!Directory.Exists(location)) Directory.CreateDirectory(location);
                 var fullFileLocation = location +"\\" + newFileName ;
                 using (var stream = System.IO.File.Create(fullFileLocation))
@@ -34,6 +33,19 @@ namespace WebBuilder.Core.Util
                 return null;
             }
 
+        }
+        public async Task<bool>   DeleteFile(string location)
+        {
+            try
+            {
+                File.Delete(location);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }

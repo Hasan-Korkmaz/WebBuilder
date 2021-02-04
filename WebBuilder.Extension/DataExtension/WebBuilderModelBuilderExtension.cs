@@ -14,6 +14,7 @@ namespace WebBuilder.Extension.DataExtension
         {
             IList<Language> languageList = new List<Language>();
             IList<Slider> sliderList = new List<Slider>();
+            IList<SliderImage> sliderImages = new List<SliderImage>();
             IList<Menu> menuList = new List<Menu>();
             IList<Category> categoryList = new List<Category>();
             IList<Product> productList = new List<Product>();
@@ -39,15 +40,23 @@ namespace WebBuilder.Extension.DataExtension
             #endregion
 
             #region Slider
-            var slider = new Slider() { Id = 1, InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false,SliderName="AnasayfaSlider",SliderDescription="Bu slider anasayfada bulunur ve dil desteği vardır"};
-           
+            var slider = new Slider() { Id = 1, InsertedDate = DateTime.Now.Date, isActive = true, isDelete = false,SliderName="AnasayfaSlider",SliderDescription="Bu slider anasayfada bulunur ve dil desteği vardır",SliderTag="Anasayfa Slayt"};
 
-
+         
 
             sliderList.Add(slider);
-        
 
 
+
+            #endregion
+
+            #region SliderImg
+
+            var sliderImgOne = new SliderImage() { Id = 1, ImgLocation = @"\WebBuilderContent\Images\Slider\384182b3-ce92-4d7d-9db7-a6ad9c3066a0.png", AltValue = "Metal işleme", Order = 1, isActive = true, isDelete = false, InsertedDate = DateTime.Now, SliderId = 1 };
+            var sliderImgTwo = new SliderImage() { Id = 2, ImgLocation = @"\WebBuilderContent\Images\Slider\811b7ad3-9c76-4946-9bfc-00c19dd1166f.jpg", AltValue = "Metal İşleme SEO", Order = 2, isActive = true, isDelete = false, InsertedDate = DateTime.Now, SliderId = 1 };
+
+            sliderImages.Add(sliderImgOne);
+            sliderImages.Add(sliderImgTwo);
             #endregion
 
             #region Menu
@@ -284,6 +293,7 @@ namespace WebBuilder.Extension.DataExtension
             modelBuilder.Entity<PhoneNumber>().HasData(phoneNumbers);
             modelBuilder.Entity<Language>().HasData(languageList);
             modelBuilder.Entity<Slider>().HasData(sliderList);
+            modelBuilder.Entity<SliderImage>().HasData(sliderImages);
             modelBuilder.Entity<Menu>().HasData(menuList);
             modelBuilder.Entity<Category>().HasData(categoryList);
             modelBuilder.Entity<Product>().HasData(productList);
