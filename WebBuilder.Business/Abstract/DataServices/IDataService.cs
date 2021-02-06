@@ -13,6 +13,7 @@ namespace WebBuilder.Business.Abstract.DataServices
     {
         string Language { get; set; }
         Task<IResult<T>> Add(T entity);
+        Task<IResult<T>> AddRange(IEnumerable<T> entity);
         Task<IResult<T>> Update(T entity);
         Task<IResult<T>> Delete(T entity);
         Task<IResult<T>> Get(Expression<Func<T, bool>> expression = null);

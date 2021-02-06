@@ -1,0 +1,253 @@
+﻿@model Entity.GlobalTextData
+@inject WebBuilder.Business.Abstract.DataServices.ILanguageService languageService
+@{
+    int languageIndexer = 0;
+    string className = "";
+    var language = languageService.GetList().Result;
+    List<Entity.Language> languageList = new List<Entity.Language>();
+    if (language.Status == WebBuilder.Core.Util.Enums.Status.Success)
+    {
+        languageList = language.Data;
+    }
+
+}
+
+
+
+
+
+@if (ViewBag.InsertOrUpdate == WebBuilder.Core.Util.Enums.ViewStatus.Insert)
+{
+    <div class="card-body">
+        <form class="form-horizontal" id="postForm">
+            <div class="card-body">
+                <input hidden name="Id" />
+                <div class="form-group row">
+                    <label for="Name" class="col-sm-4 col-form-label">Metin Adı :</label>
+                    <div class="col-sm-8">
+                        <input name="Name" class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ShortName" class="col-sm-4 col-form-label">Tasarımcı Tag :</label>
+                    <div class="col-sm-8">
+                        <input name="Tag" class="form-control" type="text" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
+                    <div class="col-sm-8">
+                        <textarea name="Description" class="form-control" type="text" rows="5"></textarea>
+                    </div>
+                </div>
+                <label for="ShortName" class="col-sm-12 col-form-label text-center">Dile Bağlı Veriler</label>
+                <div class="modal-footer justify-content-center">
+                </div>
+                <!--TAB INDEXER-->
+                <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                    @foreach (var item in languageList)
+                    {
+                        if (languageIndexer == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="true">@item.ShortName</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="false">@item.ShortName</a>
+                            </li>
+                        }
+
+                        languageIndexer = languageIndexer + 1;
+
+                    }
+                </ul>
+                <!--TABS-->
+                <div class="tab-content" id="custom-content-below-tabContent">
+                    @{
+                        languageIndexer = 0;
+                        className = "";
+                    }
+                    @foreach (var item in languageList)
+                    {
+                        if (languageIndexer == 0)
+                        {
+                            className = "show active";
+                        }
+                        else
+                        { className = ""; }
+                        <div class="tab-pane fade @className" id="languageTabActivator-@languageIndexer" role="tabpanel" aria-labelledby="languageTab-@languageIndexer">
+                            <div class="form-group row p-1 pt-5">
+                                <input name="GlobalTextDataLanguages[@languageIndexer].LanguageId" class="form-control" type="hidden" value=@item.Id>
+                                <label for="GlobalTextDataLanguages[@languageIndexer].Value" class="col-sm-4 col-form-label">İçerik :</label>
+                                <div class="col-sm-8">
+                                    <input name="GlobalTextDataLanguages[@languageIndexer].Value" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        languageIndexer = languageIndexer + 1;
+                    }
+                </div>
+                <div class="form-group row">
+                    <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
+                    <div class="col-sm-8 d-flex align-items-center">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+
+                            <input type="checkbox" value="true" checked name="isActive" onclick="ToggleValueChange(this)" class="toggle-value-changer custom-control-input" id="customSwitch3">
+
+                            <label class="custom-control-label" for="customSwitch3"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-primary" onclick="InserOrUpdate('#postForm')">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="card-body">
+        <form class="form-horizontal" id="postForm">
+            <div class="card-body">
+                <input hidden name="Id" value="@Model.Id" />
+                <div class="form-group row">
+                    <label for="Name" class="col-sm-4 col-form-label">Metin Adı :</label>
+                    <div class="col-sm-8">
+                        <input name="Name" class="form-control" type="text" value="@Model.Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ShortName" class="col-sm-4 col-form-label">Tasarımcı Tag :</label>
+                    <div class="col-sm-8">
+                        <input name="Tag" class="form-control" type="text" value="@Model.Tag">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
+                    <div class="col-sm-8">
+                        <textarea name="Description" class="form-control" type="text" rows="5" value="@Model.Description">@Model.Description</textarea>
+                    </div>
+                </div>
+                <label for="ShortName" class="col-sm-12 col-form-label text-center">Dile Bağlı Veriler</label>
+                <div class="modal-footer justify-content-center">
+                </div>
+                <!--TAB INDEXER-->
+                <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                    @foreach (var item in Model.GlobalTextDataLanguages)
+                    {
+                        if (languageIndexer == 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="true">@item.Language.ShortName</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="false">@item.Language.ShortName</a>
+                            </li>
+                        }
+                        languageIndexer = languageIndexer + 1;
+
+                    }
+                </ul>
+                <!--TABS-->
+                <div class="tab-content" id="custom-content-below-tabContent">
+                    @{
+                        languageIndexer = 0;
+                        className = "";
+                    }
+                    @foreach (var item in Model.GlobalTextDataLanguages)
+                    {
+                        if (languageIndexer == 0)
+                        {
+                            className = "show active";
+                        }
+                        else
+                        { className = ""; }
+                        <div class="tab-pane fade @className" id="languageTabActivator-@languageIndexer" role="tabpanel" aria-labelledby="languageTab-@languageIndexer">
+                            <div class="form-group row p-1 pt-5">
+                                <input name="GlobalTextDataLanguages[@languageIndexer].LanguageId" class="form-control" type="hidden" value=@item.LanguageId>
+                                <label for="GlobalTextDataLanguages[@languageIndexer].Value" class="col-sm-4 col-form-label">İçerik :</label>
+                                <div class="col-sm-8">
+                                    <textarea name="GlobalTextDataLanguages[@languageIndexer].Value" class="form-control" row="5" type="text">@item.Value</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        languageIndexer = languageIndexer + 1;
+                    }
+                </div>
+                <div class="form-group row">
+                    <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
+                    <div class="col-sm-8 d-flex align-items-center">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+
+                            <input type="checkbox" value="true" checked name="isActive" onclick="ToggleValueChange(this)" class="toggle-value-changer custom-control-input" id="customSwitch3">
+
+                            <label class="custom-control-label" for="customSwitch3"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-primary" onclick="InserOrUpdate('#postForm')">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+}
+
+<script>
+    var InsertOrUpdateValue = "@ViewBag.InsertOrUpdate"
+     function InserOrUpdate(form) {
+         var postDataObject = $(form).serialize();
+         if (InsertOrUpdateValue == "Insert") {
+             $.ajax({
+                 url: "/backofis/GlobalTextData/Add",
+                 type: "POST",
+                 data: postDataObject,
+                 cache: false,
+                 success: function (json) {
+                     if (json.statusCode === 200) {
+                         toastr["success"](json.message, "Başarılı")
+                         table.ajax.reload();
+                     }
+                     else if (json.statusCode === 500) {
+                         toastr["error"](json.message, "Sunucu tabanlı hata")
+                     }
+                     return json.data;
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                     toastr["error"]("Sunucuda hata oluştu.", "İletişim Hatası !")
+                 }
+             });
+         }
+         else {
+             $.ajax({
+                 url: "/backofis/GlobalTextData/Update",
+                 type: "POST",
+                 data: postDataObject,
+                 cache: false,
+                 success: function (json) {
+                     if (json.statusCode === 200) {
+                         toastr["success"](json.message, "Başarılı")
+                         table.ajax.reload();
+                     }
+                     else if (json.statusCode === 500) {
+                         toastr["error"](json.message, "Sunucu tabanlı hata")
+                     }
+                     return json.data;
+                     $(location).html(response);
+                 },
+                 error: function (xhr, ajaxOptions, thrownError) {
+                     toastr["error"]("Sunucuda hata oluştu.", "İletişim Hatası !")
+                 }
+             });
+         }
+         insertOrUpdateModal.modal("toggle");
+    }
+</script>

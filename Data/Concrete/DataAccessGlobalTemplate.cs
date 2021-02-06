@@ -1,5 +1,4 @@
 ﻿using Data.Abstract;
-using Data.IncludeLibrary;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -47,13 +46,11 @@ namespace Data.Concrete
         {
             using (TRepository Context = new TRepository())
             {
-                Context.Attach(entity);
-                var state = Context.Entry(entity);
-                
-                state.State = EntityState.Added;
+               await Context.AddAsync(entity);
                 await Context.SaveChangesAsync().ConfigureAwait(false);
             }
         }
+
         /// <summary>
         /// Updates specified entity in database asynchronously.
         /// </summary>
@@ -64,13 +61,15 @@ namespace Data.Concrete
 
             using (TRepository Context = new TRepository())
             {
-                Context.Attach(entity);
-                var state = Context.Entry(entity);
-                state.State = EntityState.Modified;
+             
+                 Context.Entry(entity).State=EntityState.Modified;
+                
                 await Context.SaveChangesAsync().ConfigureAwait(false);
             }
 
         }
+
+
 
         /// <summary>
         /// Updates multiple entities in database asynchronously.
@@ -97,7 +96,7 @@ namespace Data.Concrete
         {
             using (TRepository Context = new TRepository())
             {
-                entity.isDelete = true;
+              
                 var state = Context.Entry(entity);
                 state.State = EntityState.Modified;
                 await Context.SaveChangesAsync().ConfigureAwait(false);

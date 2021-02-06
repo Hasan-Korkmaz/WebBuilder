@@ -42,8 +42,9 @@ namespace WebBuilder.Business.Concrete
             var result = new Result<TEntity>();
             try
             {
+                entity.isDelete = true;
                 entity.DeletedDate = DateTime.Now;
-                await _dataProvider.DeleteAsync(entity);
+                await _dataProvider.UpdateAsync(entity);
                 result.Status = Core.Util.Enums.Status.Success;
                 result.Message = "Silme işlemi başarılı bir şekilde gerçekleştirildi.";
 
@@ -144,5 +145,23 @@ namespace WebBuilder.Business.Concrete
             return result;
         
     }
+
+        public virtual async Task<IResult<TEntity>> AddRange(IEnumerable<TEntity> entity)
+        {
+            var result = new Result<TEntity>();
+            try
+            {
+                await _dataProvider.AddAsync(entity);
+                result.Status = Core.Util.Enums.Status.Success;
+                result.Message = "Ekleme işlemi başarılı bir şekilde gerçekleştirildi.";
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = Core.Util.Enums.Status.Error;
+                result.Message = "Ekleme işlemi yapılırken bir servis hatası oluştu.";
+            }
+            return result;
+        }
     }
 }

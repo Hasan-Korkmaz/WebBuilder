@@ -31,7 +31,18 @@ namespace Data.Concrete.DataAccesLayers
                 return await query.ToListAsync().ConfigureAwait(false);
             }
         }
-       
+        public override async Task UpdateAsync(Slider entity)
+        {
+
+            using (var Context = new WebBuilderContext())
+            {
+                Context.Attach(entity);
+                Context.Entry(entity).State = EntityState.Modified;
+
+                await Context.SaveChangesAsync().ConfigureAwait(false);
+            }
+        }
+
 
     }
 }

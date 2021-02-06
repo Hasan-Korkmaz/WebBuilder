@@ -1,6 +1,6 @@
-﻿using Data.IncludeLibrary;
-using Entity;
+﻿using Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -60,6 +60,7 @@ namespace Data.Abstract
         Task DeleteAsync(IEnumerable<TEntity> entities);
         Task DeleteExpression(Expression<Func<TEntity, bool>> condition );
         Task AddAsync(TEntity entity);
+        Task AddAsync(IEnumerable<TEntity> entity);
         string Language { get; set; }
     }
 }

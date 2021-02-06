@@ -62,3 +62,7 @@
     cursor:pointer;
 
 }
+.tab-content {
+    border: 1px solid #e9ecef;
+    border-top: 0;
+}

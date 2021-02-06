@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.LanguageModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -57,6 +58,7 @@ namespace Data.Concrete.Context
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<GlobalTextData> GlobalTextDatas { get; set; }
+        public DbSet<GlobalTextDataLanguage> GlobalTextDataLanguage { get; set; }
 
     }
 }

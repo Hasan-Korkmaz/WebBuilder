@@ -19,9 +19,12 @@ namespace Data.Concrete.DataAccesLayers
             using (WebBuilderContext ctx = new WebBuilderContext())
             {
                 return await ctx.GlobalTextDatas
-                    .Where(x => x.Language.ShortName.Contains(Language) && x.isDelete == false)
-                    .Where(condition ?? (entity => true))
+                    .Where(x =>   x.isDelete == false).Where(condition ?? (entity => true))
+                    .Include(x=> x.GlobalTextDataLanguages)
+                    .ThenInclude(x=> x.Language)
+                    .AsTracking()
                     .FirstOrDefaultAsync()
+                    
                     .ConfigureAwait(false);
             }
         }
@@ -30,10 +33,48 @@ namespace Data.Concrete.DataAccesLayers
             using (WebBuilderContext ctx = new WebBuilderContext())
             {
                 return await ctx.GlobalTextDatas
-                    .Where(x => x.Language.ShortName.Contains(Language) && x.isDelete == false)
+                    .Where(x =>  x.isDelete == false)
                     .Where(condition ?? (entity => true))
                     .ToListAsync()
                     .ConfigureAwait(false);
+            }
+        }
+        public override async Task UpdateAsync(GlobalTextData entity)
+        {
+            using (var Context = new WebBuilderContext())
+            {
+                Context.Attach(entity);
+                Context.Entry(entity).State = EntityState.Modified;
+
+                await Context.SaveChangesAsync().ConfigureAwait(false);
+            }
+        }
+
+        public override async Task DeleteAsync(GlobalTextData entity)
+        {
+            using (var Context = new WebBuilderContext())
+            {
+                Context.Attach(entity);
+                var state = Context.Entry(entity);
+                state.State = EntityState.Modified;
+                foreach (var item in entity.GlobalTextDataLanguages)
+                {
+                    Context.Entry(item).State = EntityState.Modified;
+                }
+                await Context.SaveChangesAsync().ConfigureAwait(false);
+            }
+        }
+        public  string  GetByTagName(string tag)
+        {
+            using (WebBuilderContext ctx = new WebBuilderContext())
+            {
+
+                return ctx.GlobalTextDataLanguage
+                    .Where(x => x.Language.ShortName.Contains(Language) && x.GlobalTextData.Tag.Contains(tag) && x.isDelete == false && x.isActive==true)
+                    .Select(x => x.Value).FirstOrDefault();
+
+
+
             }
         }
     }

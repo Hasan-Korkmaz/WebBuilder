@@ -46,11 +46,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Slayt Seçenekleri</h3>
+                        <h3 class="card-title">Sabit Metin Verileri</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body font-italic">
-                        Slayt gösterisi verilerini ekleyin, güncelleyin veya silin.
+                        Sabit metin verilerini ekleyin, güncelleyin veya silin.
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -60,11 +60,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Slay Gösterisi Verileri</h3>
+                        <h3 class="card-title">Sabit Metin Verileri</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="sliderTable" class="table table-bordered table-striped" style="width:100%">
+                        <table id="globalTextDataTable" class="table table-bordered table-striped" style="width:100%">
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -84,9 +84,10 @@
     $(function () {
         var columns = [
             { data: 'id', visible: false },
-            { data: 'sliderName', title: 'Slayt Gösteri Adı' },
-            { data: 'sliderDescription', title: 'Slayt Gösteri Açıklaması' },
-            { data: 'sliderTag', title: 'Kod Tasarımcı Tagi' },
+            { data: 'name', title: 'Statik Metin İsmi' },
+            { data: 'tag', title: 'Kod Tasarımcı Tagi' },
+            { data: 'description', title: 'Statik Metin Açıklaması' },
+           
             {
                 data: 'isActive', title: 'Aktif mi ?',/*
                 render: function (data, type, row) {
@@ -125,11 +126,11 @@
                 }
             }
         ];
-        table = DataTable("sliderTable", "/backofis/slider/getlist", "get", columns);
+        table = DataTable("globalTextDataTable", "/backofis/GlobalTextData/getlist", "get", columns);
     })
     function OpenNewRecordModal() {
 
-        LoadPage("/backofis/Slider/add", "GET", "#InsertOrUpdateModalBody", function () { insertOrUpdateModal.modal("toggle") });
+        LoadPage("/backofis/GlobalTextData/add", "GET", "#InsertOrUpdateModalBody", function () { insertOrUpdateModal.modal("toggle") });
 
     }
     function DeleteRecord(row) {
@@ -137,17 +138,17 @@
             toastr["error"](" Tablodaki veriye erişim hatası", "Veri Erişim");
         }
         else {
-            var itemName = table.row(row).data().sliderName;
+            var itemName = table.row(row).data().name;
             var itemId = table.row(row).data().id;
             var modalContentContainer = $('#DeleteModal .modal-body');
-            modalContentContainer.html("Slayt Adı : " + itemName + "<br> Silmek üzeresiniz. Bu işlemi onaylıyormusunuz ?")
+            modalContentContainer.html("Metin İsmi : &nbsp;<b>" + itemName + "</b><br> Silmek üzeresiniz. Bu işlemi onaylıyormusunuz ?")
             deleteModal.modal("toggle");
             $('#DeleteModalOkButton').attr('onclick', "DeleteRow(" + itemId + ")");
         }
     }
     function DeleteRow(id) {
         $.ajax({
-            url: "/backofis/Slider/delete",
+            url: "/backofis/GlobalTextData/Delete",
             type: "POST",
             data: { id: id },
             cache: false,
@@ -171,7 +172,7 @@
     }
     function UpdateRow(row) {
         var itemId = table.row(row).data().id;
-        LoadPage("/backofis/slider/Update", "GET", "#InsertOrUpdateModalBody",
+        LoadPage("/backofis/GlobalTextData/Update", "GET", "#InsertOrUpdateModalBody",
             function () {
                 insertOrUpdateModal.modal("toggle")
             },

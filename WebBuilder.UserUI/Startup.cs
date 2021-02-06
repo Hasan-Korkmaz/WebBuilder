@@ -20,6 +20,10 @@ using WebBuilder.Middleware.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 using System.Diagnostics;
+using Data.Abstract.LanguageAbstracts;
+using Data.Concrete.DataAccesLayers.LanguageDataAccesLayers;
+using WebBuilder.Business.Abstract.LanguageDataServices;
+using WebBuilder.Business.Concrete.LanguageDataServices;
 
 namespace WebBuilder.UserUI
 {
@@ -59,6 +63,7 @@ namespace WebBuilder.UserUI
             services.AddScoped<IProjectDAL, EfProjectDAL>();
             services.AddScoped<IServiceDAL, EfServiceDAL>();
             services.AddScoped<IGlobalTextDataDAL, EfGlobalTextDataDAL>();
+            services.AddScoped<IGlobalTextDataLanguageDAL, EfGlobalTextDataLanguageDAL>();
             #endregion
             #region Menager Resolver
             services.AddScoped<ILanguageService, LanguageMenager>();
@@ -73,6 +78,7 @@ namespace WebBuilder.UserUI
             services.AddScoped<IProjectService, ProjectMenager>();
             services.AddScoped<IServiceService, ServiceMenager>();
             services.AddScoped<IGlobalTextDataService, GlobalTextDataMenager>();
+            services.AddScoped<IGlobalTextDataLanguageService, GlobalTextDataLanguageMenager>();
             services.AddScoped<UiDataService>();
             #endregion
             services.AddDbContext<WebBuilderContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeveloperMsSql")));

@@ -175,6 +175,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
                             item.Slider = entity;
                             item.DeletedDate = DateTime.MinValue;
                             item.UpdatedDate = DateTime.MinValue;
+                            
                         }
 
                     }
@@ -215,7 +216,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
         }
         public async Task<ApiResponse> GetList()
         {
-            var model = await this.sliderService.GetList(x => true);
+            var model = await this.sliderService.GetList(x => true && x.isDelete == false) ;
             if (model.Status == Core.Util.Enums.Status.Success)
             {
                 return new ApiResponse { Data = model.Data, Message = model.Message, StatusCode = 200, DataStatus = true };

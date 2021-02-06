@@ -7,5 +7,6 @@ namespace Data.Abstract
 {
    public interface IGlobalTextDataDAL: IDataAccesLayer<GlobalTextData>
     {
+        public string GetByTagName(string tag);
     }
 }

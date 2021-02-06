@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.LanguageModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace WebBuilder.Extension.DataExtension
             IList<Location> locations = new List<Location>();
             IList<Project> projects = new List<Project>();
             IList<GlobalTextData> globalTexts = new List<GlobalTextData>();
+            IList<GlobalTextDataLanguage> globalTextLanguageList = new List<GlobalTextDataLanguage>();
 
             var webBuilderContentDirectoryImage = "/WebBuilderContent/Images/";
             var sliderPath = webBuilderContentDirectoryImage + "Slider/";
@@ -172,122 +174,210 @@ namespace WebBuilder.Extension.DataExtension
             #endregion
 
             #region GlobalTexts
-            var text1Tr = new GlobalTextData() { Id = 1,  InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "specifications-title-text", Value = "Teknik Özellikler", LanguageId=1 };
-            var text1En = new GlobalTextData() { Id = 2, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "specifications-title-text", Value = "Specifications", LanguageId=2 };
-            var text2Tr = new GlobalTextData() { Id = 3, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "specifications-subtitle-text", Value = "Alt Başlık", LanguageId=1 };
-            var text2En = new GlobalTextData() { Id = 4, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "specifications-subtitle-text", Value = "Sub Title", LanguageId=2 };
+            
+            var text1 = new GlobalTextData() { Id = 1,  InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "specifications-title-text", Name="Özellikler Başlık" };
+            var text1TR = new GlobalTextDataLanguage() { Id = 1, GlobalTextDataId = text1.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Teknik Özellikler", LanguageId = 1 };
+            var text1EN = new GlobalTextDataLanguage() { Id = 2, GlobalTextDataId = text1.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Specifications", LanguageId = 2 };
 
-            var text3Tr = new GlobalTextData() { Id = 5, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title1", Value = "Gelişmiş Ama Basit", LanguageId=1 };
-            var text3En = new GlobalTextData() { Id = 6, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title1", Value = "Advanced but Simple", LanguageId=2 };
-            var text4Tr = new GlobalTextData() { Id = 7, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle1", Value = "Modern Tasarım", LanguageId = 1 };
-            var text4En = new GlobalTextData() { Id = 8, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle1", Value = "Modern Design", LanguageId = 2 };
-            var text5Tr = new GlobalTextData() { Id = 9, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text1", Value = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour", LanguageId = 2 };
-            var text5En = new GlobalTextData() { Id = 10, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text1", Value = "Lorem Ipsum pasajlarının birçok varyasyonu vardır,ancak çoğu,enjekte edilen mizahla bazı şekillerde değişikliğe uğramıştır.", LanguageId = 1 };
+            var text2 = new GlobalTextData() { Id = 2, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "specifications-subtitle-text", Name = "Özellikler Alt Başlık" };
+            var text2TR = new GlobalTextDataLanguage() { Id = 3, GlobalTextDataId = text2.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Detaylar", LanguageId = 1 };
+            var text2EN = new GlobalTextDataLanguage() { Id = 4, GlobalTextDataId = text2.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Details", LanguageId = 2 };
 
-            var text6Tr = new GlobalTextData() { Id = 11, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title2", Value = "En Kullanışlı,En Modern", LanguageId = 1 };
-            var text6En = new GlobalTextData() { Id = 12, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title2", Value = "Most Convenient,Most Modern ", LanguageId = 2 };
-            var text7Tr = new GlobalTextData() { Id = 13, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle2", Value = "Modern Teknoloji", LanguageId = 1 };
-            var text7En = new GlobalTextData() { Id = 14, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle2", Value = "Modern Technology", LanguageId = 2 };
-            var text8Tr = new GlobalTextData() { Id = 15, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text2", Value = "Bir okuyucunun, düzenine bakarken bir sayfanın okunabilir içeriğinden rahatsız olacağı uzun süredir bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı", LanguageId = 1 };
-            var text8En = new GlobalTextData() { Id = 16, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text2", Value = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum", LanguageId = 2 };
+            var text3 = new GlobalTextData() { Id = 3, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-title1", Name = "1-)Geliş ama basit Ana Başlık" };
+            var text3TR = new GlobalTextDataLanguage() { Id = 5, GlobalTextDataId = text3.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Gelişmiş Ama Basit", LanguageId = 1 };
+            var text3EN = new GlobalTextDataLanguage() { Id = 6, GlobalTextDataId = text3.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Advanced but Simple", LanguageId = 2 };
 
-            var text9Tr = new GlobalTextData() { Id = 17, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title3", Value = "Mobil Uyumlu", LanguageId = 1 };
-            var text9En = new GlobalTextData() { Id = 18, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title3", Value = "Mobile Compatible ", LanguageId = 2 };
-            var text10Tr = new GlobalTextData() { Id = 19, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle3", Value = "Finubus Türkçesi yok", LanguageId = 1 };
-            var text10En = new GlobalTextData() { Id = 20, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle3", Value = "Finibus Bonorum", LanguageId = 2 };
-            var text11Tr = new GlobalTextData() { Id = 21, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text3", Value = "Onlara layık görüyoruz ve onlar doğrulardan nefret edenleri suçluyorlar,Ama gerçekte ve onların hazzının alçakça zekası bu acıları bozuyor ve onun için sundu.", LanguageId = 1 };
-            var text11En = new GlobalTextData() { Id = 22, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text3", Value = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas", LanguageId = 2 };
+            var text4 = new GlobalTextData() { Id = 4, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-subtitle1", Name = "1-)Geliş ama basit Alt Başlık" };
+            var text4TR = new GlobalTextDataLanguage() { Id = 7, GlobalTextDataId = text4.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Modern Tasarım", LanguageId = 1 };
+            var text4EN = new GlobalTextDataLanguage() { Id = 8, GlobalTextDataId = text4.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Modern Design", LanguageId = 2 };
 
-            var text12Tr = new GlobalTextData() { Id = 23, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title4", Value = "Hepsi Senin", LanguageId = 1 };
-            var text12En = new GlobalTextData() { Id = 24, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-title4", Value = "It's All Yours ", LanguageId = 2 };
-            var text13Tr = new GlobalTextData() { Id = 25, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle4", Value = "Sizin Domain Adınız", LanguageId = 1 };
-            var text13En = new GlobalTextData() { Id = 26, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-subtitle4", Value = "Your Domain Name", LanguageId = 2 };
-            var text14Tr = new GlobalTextData() { Id = 27, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text4", Value = "Öte yandan, haklı bir öfkeyle kınıyoruz ve insanların zevkinin cazibesi tarafından bu kadar kandırılan ve morali bozuk olan erkekleri sevmiyoruz.", LanguageId = 1 };
-            var text14En = new GlobalTextData() { Id = 28, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "advanced-but-simple-text4", Value = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the ", LanguageId = 2 };
-
-            var text15Tr = new GlobalTextData() { Id = 29, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-title", Value = "BİLİM VE MÜHENDİSLİK YOLUYLA YENİLİK", LanguageId = 1 };
-            var text15En = new GlobalTextData() { Id = 30, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-title", Value = "Innovation through SCIENCE & ENGINEERING", LanguageId = 2 };
-            var text16Tr = new GlobalTextData() { Id = 31, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-text", Value = "Anric teknolojileri, Atomik Katman Biriktirme özelliğine odaklanarak ince film biriktirme alanlarında teknoloji ve yeniliğe odaklanır.", LanguageId = 1 };
-            var text16En = new GlobalTextData() { Id = 32, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-text", Value = "Anric technologies focuses on technology and innovation in the areas of thin film deposition with a special focus on Atomic Layer Deposition.", LanguageId = 2 };
-            var text17Tr = new GlobalTextData() { Id = 33, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-button-text", Value = "KAYIT OL", LanguageId = 1 };
-            var text17En = new GlobalTextData() { Id = 34, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "science-engineering-button-text", Value = "REGİSTER", LanguageId = 2 };
-            var text18Tr = new GlobalTextData() { Id = 35, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title", Value = "Siz iyi bir şirketsiniz", LanguageId = 1 };
-            var text18En = new GlobalTextData() { Id = 36, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title", Value = "You Are Good Company", LanguageId = 2 };
-            var text19Tr = new GlobalTextData() { Id = 37, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title-subtext", Value = "Firma hakkında açıklama", LanguageId = 1 };
-            var text19En = new GlobalTextData() { Id = 38, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title-subtext", Value = "Description about your company", LanguageId = 2 };
-            var text20Tr = new GlobalTextData() { Id = 39, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title-panel-lamination", Value = "Panel Laminasyonu", LanguageId = 1 };
-            var text20En = new GlobalTextData() { Id = 40, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-company-title-panel-lamination", Value = "Panel Lamination", LanguageId = 2 };
-            var text21Tr = new GlobalTextData() { Id = 41, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-container-right-content-title", Value = "Fotoğraf Başlık", LanguageId = 1 };
-            var text21En = new GlobalTextData() { Id = 42, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-container-right-content-title", Value = "Photo Title", LanguageId = 2 };
-            var text22Tr = new GlobalTextData() { Id = 43, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-container-right-content-description", Value = "Fotoğraf Açıklaması", LanguageId = 1 };
-            var text22En = new GlobalTextData() { Id = 44, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "you-are-good-container-right-content-description", Value = "Photo Description", LanguageId = 2 };
-            var text23Tr = new GlobalTextData() { Id = 45, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "section-references-side", Value = "Referanslar", LanguageId = 1 };
-            var text23En = new GlobalTextData() { Id = 46, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "section-references-side", Value = "References", LanguageId = 2 };
-            var text24Tr = new GlobalTextData() { Id = 47, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-title", Value = "Ticari Markalarımız", LanguageId = 1 };
-            var text24En = new GlobalTextData() { Id = 48, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-title", Value = "Our Trademarkers", LanguageId = 2 };
-            var text25Tr = new GlobalTextData() { Id = 49, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-title", Value = "Kart Başlık", LanguageId = 1 };
-            var text25En = new GlobalTextData() { Id = 50, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-title", Value = "Card Title", LanguageId = 2 };
-            var text26Tr = new GlobalTextData() { Id = 51, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-subtitle", Value = "Kart Alt Başlık", LanguageId = 1 };
-            var text26En = new GlobalTextData() { Id = 52, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-subtitle", Value = "Card Subtitle", LanguageId = 2 };
-            var text27Tr = new GlobalTextData() { Id = 53, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-description", Value = "Kart Açıklaması", LanguageId = 1 };
-            var text27En = new GlobalTextData() { Id = 54, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Key = "our-trademarkers-content-item-description", Value = "Card description", LanguageId = 2 };
+            var text5 = new GlobalTextData() { Id = 5, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-text1", Name = "1-)Geliş ama basit Açıklama" };
+            var text5TR = new GlobalTextDataLanguage() { Id = 9, GlobalTextDataId = text5.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Lorem Ipsum pasajlarının birçok varyasyonu vardır, ancak çoğu, enjekte edilen mizahla bazı şekillerde değişikliğe uğramıştır.", LanguageId = 1 };
+            var text5EN = new GlobalTextDataLanguage() { Id = 10, GlobalTextDataId = text5.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour", LanguageId = 2 };
 
 
-            globalTexts.Add(text1Tr);
-            globalTexts.Add(text2Tr);
-            globalTexts.Add(text3Tr);
-            globalTexts.Add(text4Tr);
-            globalTexts.Add(text5Tr);
-            globalTexts.Add(text6Tr);
-            globalTexts.Add(text7Tr);
-            globalTexts.Add(text8Tr);
-            globalTexts.Add(text9Tr);
-            globalTexts.Add(text10Tr);
-            globalTexts.Add(text11Tr);
-            globalTexts.Add(text12Tr);
-            globalTexts.Add(text13Tr);
-            globalTexts.Add(text14Tr);
-            globalTexts.Add(text15Tr);
-            globalTexts.Add(text16Tr);
-            globalTexts.Add(text17Tr);
-            globalTexts.Add(text18Tr);
-            globalTexts.Add(text19Tr);
-            globalTexts.Add(text20Tr);
-            globalTexts.Add(text21Tr);
-            globalTexts.Add(text22Tr);
-            globalTexts.Add(text23Tr);
-            globalTexts.Add(text24Tr);
-            globalTexts.Add(text25Tr);
-            globalTexts.Add(text26Tr);
-            globalTexts.Add(text27Tr);
+            var text6 = new GlobalTextData() { Id = 6, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-title2", Name = "2-)En Kullanışlı En Modern Ana Başlık" };
+            var text6TR = new GlobalTextDataLanguage() { Id = 11, GlobalTextDataId = text6.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "En Kullanışlı,En Modern", LanguageId = 1 };
+            var text6EN = new GlobalTextDataLanguage() { Id = 12, GlobalTextDataId = text6.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Most Convenient,Most Modern", LanguageId = 2 };
 
-            globalTexts.Add(text1En);
-            globalTexts.Add(text2En);
-            globalTexts.Add(text3En);
-            globalTexts.Add(text4En);
-            globalTexts.Add(text5En);
-            globalTexts.Add(text6En);
-            globalTexts.Add(text7En);
-            globalTexts.Add(text8En);
-            globalTexts.Add(text9En);
-            globalTexts.Add(text10En);
-            globalTexts.Add(text11En);
-            globalTexts.Add(text12En);
-            globalTexts.Add(text13En);
-            globalTexts.Add(text14En);
-            globalTexts.Add(text15En);
-            globalTexts.Add(text16En);
-            globalTexts.Add(text17En);
-            globalTexts.Add(text18En);
-            globalTexts.Add(text19En);
-            globalTexts.Add(text20En);
-            globalTexts.Add(text21En);
-            globalTexts.Add(text22En);
-            globalTexts.Add(text23En);
-            globalTexts.Add(text24En);
-            globalTexts.Add(text25En);
-            globalTexts.Add(text26En);
-            globalTexts.Add(text27En);
+            var text7 = new GlobalTextData() { Id = 7, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-subtitle2", Name = "2-)En Kullanışlı En Modern  Alt Başlık" };
+            var text7TR = new GlobalTextDataLanguage() { Id = 13, GlobalTextDataId = text7.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Modern Teknoloji", LanguageId = 1 };
+            var text7EN = new GlobalTextDataLanguage() { Id = 14, GlobalTextDataId = text7.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Modern Technology", LanguageId = 2 };
+
+            var text8 = new GlobalTextData() { Id = 8, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-text2", Name = "2-)En Kullanışlı En Modern Açıklama" };
+            var text8TR = new GlobalTextDataLanguage() { Id = 15, GlobalTextDataId = text8.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Bir okuyucunun, düzenine bakarken bir sayfanın okunabilir içeriğinden rahatsız olacağı uzun süredir bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı", LanguageId = 1 };
+            var text8EN = new GlobalTextDataLanguage() { Id = 16, GlobalTextDataId = text8.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum", LanguageId = 2 };
+
+
+            var text9 = new GlobalTextData() { Id = 9, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-title3", Name = "3-)Mobil Uyumlu Ana Başlık" };
+            var text9TR = new GlobalTextDataLanguage() { Id = 17, GlobalTextDataId = text9.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Mobil Uyumlu", LanguageId = 1 };
+            var text9EN = new GlobalTextDataLanguage() { Id = 18, GlobalTextDataId = text9.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Mobile Compatible", LanguageId = 2 };
+
+            var text10 = new GlobalTextData() { Id = 10, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-subtitle3", Name = "3-)Mobil Uyumlu  Alt Başlık" };
+            var text10TR = new GlobalTextDataLanguage() { Id = 19, GlobalTextDataId = text10.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Finubus Türkçesi yok", LanguageId = 1 };
+            var text10EN = new GlobalTextDataLanguage() { Id = 20, GlobalTextDataId = text10.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Finibus Bonorum", LanguageId = 2 };
+
+            var text11 = new GlobalTextData() { Id = 11, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-text3", Name = "3-)Mobil Uyumlu Açıklama" };
+            var text11TR = new GlobalTextDataLanguage() { Id = 21, GlobalTextDataId = text11.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Onlara layık görüyoruz ve onlar doğrulardan nefret edenleri suçluyorlar,Ama gerçekte ve onların hazzının alçakça zekası bu acıları bozuyor ve onun için sundu.", LanguageId = 1 };
+            var text11EN = new GlobalTextDataLanguage() { Id = 22, GlobalTextDataId = text11.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas", LanguageId = 2 };
+
+
+            var text12 = new GlobalTextData() { Id = 12, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-title4", Name = "4-)Hepsi Senin Ana Başlık" };
+            var text12TR = new GlobalTextDataLanguage() { Id = 23, GlobalTextDataId = text12.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Hepsi Senin", LanguageId = 1 };
+            var text12EN = new GlobalTextDataLanguage() { Id = 24, GlobalTextDataId = text12.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "It's All Yours", LanguageId = 2 };
+
+            var text13 = new GlobalTextData() { Id = 13, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-subtitle4", Name = "4-)Hepsi Senin  Alt Başlık" };
+            var text13TR = new GlobalTextDataLanguage() { Id = 25, GlobalTextDataId = text13.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Sizin Domain Adınız", LanguageId = 1 };
+            var text13EN = new GlobalTextDataLanguage() { Id = 26, GlobalTextDataId = text13.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Your Domain Name", LanguageId = 2 };
+
+            var text14 = new GlobalTextData() { Id = 14, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "advanced-but-simple-text4", Name = "4-)Hepsi Senin Açıklama" };
+            var text14TR = new GlobalTextDataLanguage() { Id = 27, GlobalTextDataId = text14.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Öte yandan, haklı bir öfkeyle kınıyoruz ve insanların zevkinin cazibesi tarafından bu kadar kandırılan ve morali bozuk olan erkekleri sevmiyoruz.", LanguageId = 1 };
+            var text14EN = new GlobalTextDataLanguage() { Id = 28, GlobalTextDataId = text14.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the ", LanguageId = 2 };
+
+
+
+            var text15 = new GlobalTextData() { Id = 15, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "science-engineering-title", Name = "BİLİM VE MÜHENDİSLİK YOLUYLA YENİLİK başlık" };
+            var text15TR = new GlobalTextDataLanguage() { Id = 29, GlobalTextDataId = text15.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "BİLİM VE MÜHENDİSLİK YOLUYLA YENİLİK", LanguageId = 1 };
+            var text15EN = new GlobalTextDataLanguage() { Id = 30, GlobalTextDataId = text15.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Innovation through SCIENCE & ENGINEERING", LanguageId = 2 };
+
+            var text16 = new GlobalTextData() { Id = 16, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "science-engineering-text", Name = "BİLİM VE MÜHENDİSLİK YOLUYLA YENİLİK Açıklama" };
+            var text16TR = new GlobalTextDataLanguage() { Id = 31, GlobalTextDataId = text16.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Anric teknolojileri, Atomik Katman Biriktirme özelliğine odaklanarak ince film biriktirme alanlarında teknoloji ve yeniliğe odaklanır.", LanguageId = 1 };
+            var text16EN = new GlobalTextDataLanguage() { Id = 32, GlobalTextDataId = text16.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "IAnric technologies focuses on technology and innovation in the areas of thin film deposition with a special focus on Atomic Layer Deposition.", LanguageId = 2 };
+
+
+            var text17 = new GlobalTextData() { Id = 17, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "science-engineering-button-text", Name = "KAYIT OL -Button" };
+            var text17TR = new GlobalTextDataLanguage() { Id = 33, GlobalTextDataId = text17.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "KAYIT OL", LanguageId = 1 };
+            var text17EN = new GlobalTextDataLanguage() { Id = 34, GlobalTextDataId = text17.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "REGİSTER", LanguageId = 2 };
+
+
+            var text18 = new GlobalTextData() { Id = 18, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "you-are-good-company-title", Name = "Siz iyi bir şirketsiniz -Text" };
+            var text18TR = new GlobalTextDataLanguage() { Id = 35, GlobalTextDataId = text18.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Siz iyi bir şirketsiniz", LanguageId = 1 };
+            var text18EN = new GlobalTextDataLanguage() { Id = 36, GlobalTextDataId = text18.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "You Are Good Company", LanguageId = 2 };
+
+
+            var text19 = new GlobalTextData() { Id = 19, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "you-are-good-company-title-subtext", Name = "Siz iyi bir şirketsiniz  -Alt Başlık" };
+            var text19TR = new GlobalTextDataLanguage() { Id = 37, GlobalTextDataId = text19.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Firma hakkında açıklama", LanguageId = 1 };
+            var text19EN = new GlobalTextDataLanguage() { Id = 38, GlobalTextDataId = text19.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Description about your company", LanguageId = 2 };
+
+            var text20 = new GlobalTextData() { Id = 20, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "you-are-good-company-title-panel-lamination", Name = "Panel Laminasyon -Text" };
+            var text20TR = new GlobalTextDataLanguage() { Id = 39, GlobalTextDataId = text20.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Panel Laminasyon", LanguageId = 1 };
+            var text20EN = new GlobalTextDataLanguage() { Id = 40, GlobalTextDataId = text20.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Panel Lamination", LanguageId = 2 };
+
+            var text21 = new GlobalTextData() { Id = 21, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "you-are-good-container-right-content-title", Name = "Anasayfa Fotoğraf Başlık -Başlık" };
+            var text21TR = new GlobalTextDataLanguage() { Id = 41, GlobalTextDataId = text21.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Fotoğraf Başlık", LanguageId = 1 };
+            var text21EN = new GlobalTextDataLanguage() { Id = 42, GlobalTextDataId = text21.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Photo Title", LanguageId = 2 };
+
+            var text22 = new GlobalTextData() { Id = 22, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "you-are-good-container-right-content-description", Name = "Anasayfa Fotoğraf Açıklama -Text" };
+            var text22TR = new GlobalTextDataLanguage() { Id = 43, GlobalTextDataId = text22.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Fotoğraf Açıklaması", LanguageId = 1 };
+            var text22EN = new GlobalTextDataLanguage() { Id = 44, GlobalTextDataId = text22.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Photo Description", LanguageId = 2 };
+
+            var text23 = new GlobalTextData() { Id = 23, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "section-references-side", Name = "Referanslar -Text" };
+            var text23TR = new GlobalTextDataLanguage() { Id = 45, GlobalTextDataId = text23.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Referanslar", LanguageId = 1 };
+            var text23EN = new GlobalTextDataLanguage() { Id = 46, GlobalTextDataId = text23.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Photo Description", LanguageId = 2 };
+
+
+            var text24 = new GlobalTextData() { Id = 24, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "our-trademarkers-title", Name = "Ticari Markalarımız -Text" };
+            var text24TR = new GlobalTextDataLanguage() { Id = 47, GlobalTextDataId = text24.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Ticari Markalarımız", LanguageId = 1 };
+            var text24EN = new GlobalTextDataLanguage() { Id = 48, GlobalTextDataId = text24.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Our Trademarker", LanguageId = 2 };
+
+
+            var text25 = new GlobalTextData() { Id = 25, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "our-trademarkers-content-item-title", Name = "Kart Başlık -Başlık" };
+            var text25TR = new GlobalTextDataLanguage() { Id = 49, GlobalTextDataId = text25.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Kart Başlık", LanguageId = 1 };
+            var text25EN = new GlobalTextDataLanguage() { Id = 50, GlobalTextDataId = text25.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Card Title", LanguageId = 2 };
+
+
+            var text26 = new GlobalTextData() { Id = 26, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "our-trademarkers-content-item-subtitle", Name = "Kart Alt Başlık -Alt Başlık" };
+            var text26TR = new GlobalTextDataLanguage() { Id = 51, GlobalTextDataId = text26.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Kart Alt Başlık", LanguageId = 1 };
+            var text26EN = new GlobalTextDataLanguage() { Id = 52, GlobalTextDataId = text26.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Card Subtitle", LanguageId = 2 };
+
+            var text27 = new GlobalTextData() { Id = 27, InsertedDate = DateTime.Now, isDelete = false, isActive = true, Tag = "our-trademarkers-content-item-description", Name = "Kart Açıklaması -Text" };
+            var text27TR = new GlobalTextDataLanguage() { Id = 53, GlobalTextDataId = text27.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Kart Açıklaması", LanguageId = 1 };
+            var text27EN = new GlobalTextDataLanguage() { Id = 54, GlobalTextDataId = text27.Id, isDelete = false, isActive = true, InsertedDate = DateTime.Now, Value = "Card description", LanguageId = 2 };
+
+
+
+            globalTexts.Add(text1);
+            globalTexts.Add(text2);
+            globalTexts.Add(text3);
+            globalTexts.Add(text4);
+            globalTexts.Add(text5);
+            globalTexts.Add(text6);
+            globalTexts.Add(text7);
+            globalTexts.Add(text8);
+            globalTexts.Add(text9);
+            globalTexts.Add(text10);
+            globalTexts.Add(text11);
+            globalTexts.Add(text12);
+            globalTexts.Add(text13);
+            globalTexts.Add(text14);
+            globalTexts.Add(text15);
+            globalTexts.Add(text16);
+            globalTexts.Add(text17);
+            globalTexts.Add(text18);
+            globalTexts.Add(text19);
+            globalTexts.Add(text20);
+            globalTexts.Add(text21);
+            globalTexts.Add(text22);
+            globalTexts.Add(text23);
+            globalTexts.Add(text24);
+            globalTexts.Add(text25);
+            globalTexts.Add(text26);
+            globalTexts.Add(text27);
+
+            globalTextLanguageList.Add(text1EN);
+            globalTextLanguageList.Add(text2EN);
+            globalTextLanguageList.Add(text3EN);
+            globalTextLanguageList.Add(text4EN);
+            globalTextLanguageList.Add(text5EN);
+            globalTextLanguageList.Add(text6EN);
+            globalTextLanguageList.Add(text7EN);
+            globalTextLanguageList.Add(text8EN);
+            globalTextLanguageList.Add(text9EN);
+            globalTextLanguageList.Add(text10EN);
+            globalTextLanguageList.Add(text11EN);
+            globalTextLanguageList.Add(text12EN);
+            globalTextLanguageList.Add(text13EN);
+            globalTextLanguageList.Add(text14EN);
+            globalTextLanguageList.Add(text15EN);
+            globalTextLanguageList.Add(text16EN);
+            globalTextLanguageList.Add(text17EN);
+            globalTextLanguageList.Add(text18EN);
+            globalTextLanguageList.Add(text19EN);
+            globalTextLanguageList.Add(text20EN);
+            globalTextLanguageList.Add(text21EN);
+            globalTextLanguageList.Add(text22EN);
+            globalTextLanguageList.Add(text23EN);
+            globalTextLanguageList.Add(text24EN);
+            globalTextLanguageList.Add(text25EN);
+            globalTextLanguageList.Add(text26EN);
+            globalTextLanguageList.Add(text27EN);
+            globalTextLanguageList.Add(text1TR);
+            globalTextLanguageList.Add(text2TR);
+            globalTextLanguageList.Add(text3TR);
+            globalTextLanguageList.Add(text4TR);
+            globalTextLanguageList.Add(text5TR);
+            globalTextLanguageList.Add(text6TR);
+            globalTextLanguageList.Add(text7TR);
+            globalTextLanguageList.Add(text8TR);
+            globalTextLanguageList.Add(text9TR);
+            globalTextLanguageList.Add(text10TR);
+            globalTextLanguageList.Add(text11TR);
+            globalTextLanguageList.Add(text12TR);
+            globalTextLanguageList.Add(text13TR);
+            globalTextLanguageList.Add(text14TR);
+            globalTextLanguageList.Add(text15TR);
+            globalTextLanguageList.Add(text16TR);
+            globalTextLanguageList.Add(text17TR);
+            globalTextLanguageList.Add(text18TR);
+            globalTextLanguageList.Add(text19TR);
+            globalTextLanguageList.Add(text20TR);
+            globalTextLanguageList.Add(text21TR);
+            globalTextLanguageList.Add(text22TR);
+            globalTextLanguageList.Add(text23TR);
+            globalTextLanguageList.Add(text24TR);
+            globalTextLanguageList.Add(text25TR);
+            globalTextLanguageList.Add(text26TR);
+            globalTextLanguageList.Add(text27TR);
             #endregion
 
             modelBuilder.Entity<PhoneNumber>().HasData(phoneNumbers);
@@ -303,6 +393,7 @@ namespace WebBuilder.Extension.DataExtension
             modelBuilder.Entity<Location>().HasData(locations);
             modelBuilder.Entity<Project>().HasData(projects);
             modelBuilder.Entity<GlobalTextData>().HasData(globalTexts);
+            modelBuilder.Entity<GlobalTextDataLanguage>().HasData(globalTextLanguageList);
 
         }
     }
