@@ -69,7 +69,7 @@ namespace Data.Concrete.DataAccesLayers
             using (WebBuilderContext ctx = new WebBuilderContext())
             {
 
-                return ctx.GlobalTextDataLanguage
+                return ctx.GlobalTextDataLanguages
                     .Where(x => x.Language.ShortName.Contains(Language) && x.GlobalTextData.Tag.Contains(tag) && x.isDelete == false && x.isActive==true)
                     .Select(x => x.Value).FirstOrDefault();
 

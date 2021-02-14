@@ -74,6 +74,7 @@ function DataTable(tableId, url, type, columnList, data,) {
                    
 
                 }
+                console.log(json);
                 return json.data;
             },
         },
@@ -106,6 +107,64 @@ function DataTable(tableId, url, type, columnList, data,) {
     return table;
 }
 
+function SelectInput(Input, url, type, data) {
+    console.log("ID" + data);
+    console.log($(Input).attr('select-data'));
+$(Input).select2({
+    ajax: {
+        url: url,
+        type:type,
+        data: function (params) {
+            var query = {
+                search: params.term,
+                Id: $(Input).attr('select-data')
+            }
+            // Query parameters will be ?search=[term]&type=public
+            return query;
+        },
+        processResults: function (data) {
+            // Transforms the top-level key of the response object from 'items' to 'results'
+            return {
+                results: data
+            };
+        }
+    }
+});
+}
+
+function ReadyForDataDataTable(tableId, columnList,) {
+    console.log("tableid" + tableId)
+    var table = $("#" + tableId).DataTable({
+        "language": {
+            "url": "/BackOfisStatic/Lib/DataTables/Turkish.json"
+        },
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": true,
+        "buttons": [
+            {
+                className: "bg-primary",
+                text: "<i class='fas fa-plus'></i><span style='margin-left: 5px'>Yeni</span>",
+                action: function (e, dt, node, config) {
+                    OpenNewRecordModal();
+                }
+            },
+            { extend: 'copy', text: 'Kopyala', className: 'bg-primary' },
+            { extend: 'excel', text: 'Excel İndir', className: 'bg-primary', exportOptions: { columns: ':visible' } },
+            { extend: 'pdf', text: 'PDF İndir', className: 'bg-primary' },
+            { extend: 'print', text: 'Yazdır', className: 'bg-primary' },
+        ],
+        initComplete: function () {
+            setTimeout(function () {
+                table.buttons().container().appendTo('#' + tableId + '_wrapper .col-md-6:eq(0)');
+            }, 10);
+        }
+    })
+    console.log($('#' + tableId + '_wrapper.col-md-6:eq(0)'))
+
+
+    return table;
+}
 
 /* Web View Yükleyici*/
 /* Back End Servislerinden Arayüz çeker*/

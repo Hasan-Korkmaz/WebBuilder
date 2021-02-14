@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.LanguageModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,12 +7,10 @@ namespace Entity
 {
     public class Menu:BaseEntity
     {
-        public string MenuName { get; set; }
-        public string MenuURL { get; set; }
-        public string MenuDisplayName { get; set; }
+        public string Name { get; set; }
+        public string Description{ get; set; }
+        public string Tag { get; set; }
+        public virtual ICollection<MenuItem> MenuItems{ get; set; }
 
-        public int LanguageId { get; set; }
-
-        public Language Language { get; set; }
     }
 }

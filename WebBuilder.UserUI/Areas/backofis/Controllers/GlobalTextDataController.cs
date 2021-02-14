@@ -11,11 +11,11 @@ using static WebBuilder.Core.Util.Enums;
 namespace WebBuilder.UserUI.Areas.backofis.Controllers
 {
     [Area("backofis")]
-    public class GlobalTextData : Controller
+    public class GlobalTextDataController : Controller
     {
         IGlobalTextDataService globalTextDataService;
         IGlobalTextDataLanguageService globalTextDataLanguageService;
-        public GlobalTextData(IGlobalTextDataService globalTextDataService, IGlobalTextDataLanguageService globalTextDataLanguageService)
+        public GlobalTextDataController(IGlobalTextDataService globalTextDataService, IGlobalTextDataLanguageService globalTextDataLanguageService)
         {
             this.globalTextDataService = globalTextDataService;
             this.globalTextDataLanguageService = globalTextDataLanguageService;

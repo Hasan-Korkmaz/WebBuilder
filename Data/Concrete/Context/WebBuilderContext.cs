@@ -47,6 +47,8 @@ namespace Data.Concrete.Context
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<SliderImage> SliderImages { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<MenuItem> MenuItems{ get; set; }
+        public DbSet<MenuItemLanguage> MenuItemLanguages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryLanguageMap> CategoryLanguageMap { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
@@ -58,7 +60,8 @@ namespace Data.Concrete.Context
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<GlobalTextData> GlobalTextDatas { get; set; }
-        public DbSet<GlobalTextDataLanguage> GlobalTextDataLanguage { get; set; }
+        public DbSet<GlobalImage> GlobalImages { get; set; }
+        public DbSet<GlobalTextDataLanguage> GlobalTextDataLanguages { get; set; }
 
     }
 }

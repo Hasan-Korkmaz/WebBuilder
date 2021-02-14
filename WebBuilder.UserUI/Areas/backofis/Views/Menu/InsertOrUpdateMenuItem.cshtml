@@ -1,4 +1,4 @@
-﻿@model Entity.GlobalTextData
+﻿@model Entity.MenuItem
 @inject WebBuilder.Business.Abstract.DataServices.ILanguageService languageService
 @{
     int languageIndexer = 0;
@@ -22,27 +22,34 @@
         <form class="form-horizontal" id="postForm">
             <div class="card-body">
                 <input hidden name="Id" />
+                <input hidden id="MenuId" name="MenuId" />
                 <div class="form-group row">
                     <label for="Name" class="col-sm-4 col-form-label">Metin Adı :</label>
                     <div class="col-sm-8">
-                        <input name="Name" class="form-control" type="text" value="">
+                        <input name="Name" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="ShortName" class="col-sm-4 col-form-label">Tasarımcı Tag :</label>
+                    <label for="ShortName" class="col-sm-4 col-form-label">URL :</label>
                     <div class="col-sm-8">
-                        <input name="Tag" class="form-control" type="text" value="">
+                        <input name="URL" class="form-control" type="text" >
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
+                    <label for="TopMenuItemId" class="col-sm-4 col-form-label">Üst Menü :</label>
+                    <div class="col-sm-8">
+                        <select id="TopMenuItemId" name="TopMenuItemId" class="form-control" type="text" value="">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Description" class="col-sm-4 col-form-label">Açıklama :</label>
                     <div class="col-sm-8">
                         <textarea name="Description" class="form-control" type="text" rows="5"></textarea>
                     </div>
                 </div>
-                <label for="ShortName" class="col-sm-12 col-form-label text-center">Dile Bağlı Veriler</label>
-                <div class="modal-footer justify-content-center">
-                </div>
+
                 <!--TAB INDEXER-->
                 <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
                     @foreach (var item in languageList)
@@ -81,16 +88,16 @@
                         <div class="tab-pane fade @className" id="languageTabActivator-@languageIndexer" role="tabpanel" aria-labelledby="languageTab-@languageIndexer">
                             <div class="form-group row p-1 pt-5">
                                 <input name="MenuItemLanguages[@languageIndexer].LanguageId" class="form-control" type="hidden" value=@item.Id>
-                                <input name="MenuItemLanguages[@languageIndexer].MenuItemId" class="form-control" type="hidden" value=@item.Id>
-                                <label for="MenuItemLanguages[@languageIndexer].Value" class="col-sm-4 col-form-label">İçerik :</label>
+                                <label for="MenuItemLanguages[@languageIndexer].DisplayName" class="col-sm-4 col-form-label">Görünen Metin :</label>
                                 <div class="col-sm-8">
-                                    <input name="GlobalTextDataLanguages[@languageIndexer].Value" class="form-control" type="text">
+                                    <input name="MenuItemLanguages[@languageIndexer].DisplayName" class="form-control" type="text" value="">
                                 </div>
                             </div>
                         </div>
                         languageIndexer = languageIndexer + 1;
                     }
                 </div>
+
                 <div class="form-group row">
                     <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
                     <div class="col-sm-8 d-flex align-items-center">
@@ -114,44 +121,52 @@ else
     <div class="card-body">
         <form class="form-horizontal" id="postForm">
             <div class="card-body">
-                <input hidden name="Id" value="@Model.Id" />
+                <input hidden name="Id" @Model.Id />
+                <input hidden id="MenuId" name="MenuId" />
                 <div class="form-group row">
                     <label for="Name" class="col-sm-4 col-form-label">Metin Adı :</label>
                     <div class="col-sm-8">
-                        <input name="Name" class="form-control" type="text" value="@Model.Name">
+                        <input name="Name" class="form-control" type="text" value="@Model.Name ">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="ShortName" class="col-sm-4 col-form-label">Tasarımcı Tag :</label>
+                    <label for="ShortName" class="col-sm-4 col-form-label">URL :</label>
                     <div class="col-sm-8">
-                        <input name="Tag" class="form-control" type="text" value="@Model.Tag">
+                        <input name="URL" class="form-control" type="text" value="@Model.Url  ">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="ShortName" class="col-sm-4 col-form-label">Açıklama :</label>
+                    <label for="TopMenuItemId" class="col-sm-4 col-form-label">Üst Menü :</label>
                     <div class="col-sm-8">
-                        <textarea name="Description" class="form-control" type="text" rows="5" value="@Model.Description">@Model.Description</textarea>
+                        <select id="TopMenuItemId" name="TopMenuItemId" class="form-control" type="text" value="">
+                        </select>
                     </div>
                 </div>
-                <label for="ShortName" class="col-sm-12 col-form-label text-center">Dile Bağlı Veriler</label>
-                <div class="modal-footer justify-content-center">
+
+                <div class="form-group row">
+                    <label for="Description" class="col-sm-4 col-form-label">Açıklama :</label>
+                    <div class="col-sm-8">
+                        <textarea name="Description" class="form-control" type="text" rows="5">@Model.Description</textarea>
+                    </div>
                 </div>
+
                 <!--TAB INDEXER-->
                 <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-                    @foreach (var item in Model.GlobalTextDataLanguages)
+                    @foreach (var item in languageList)
                     {
                         if (languageIndexer == 0)
                         {
                             <li class="nav-item">
-                                <a class="nav-link active" id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="true">@item.Language.ShortName</a>
+                                <a class="nav-link active" id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="true">@item.ShortName</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link " id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="false">@item.Language.ShortName</a>
+                                <a class="nav-link " id="languageTab-@languageIndexer" data-toggle="pill" href="#languageTabActivator-@languageIndexer" role="tab" aria-controls="languageTabActivator-@languageIndexer" aria-selected="false">@item.ShortName</a>
                             </li>
                         }
+
                         languageIndexer = languageIndexer + 1;
 
                     }
@@ -162,7 +177,7 @@ else
                         languageIndexer = 0;
                         className = "";
                     }
-                    @foreach (var item in Model.GlobalTextDataLanguages)
+                    @foreach (var item in Model.MenuItemLanguages)
                     {
                         if (languageIndexer == 0)
                         {
@@ -172,16 +187,17 @@ else
                         { className = ""; }
                         <div class="tab-pane fade @className" id="languageTabActivator-@languageIndexer" role="tabpanel" aria-labelledby="languageTab-@languageIndexer">
                             <div class="form-group row p-1 pt-5">
-                                <input name="GlobalTextDataLanguages[@languageIndexer].LanguageId" class="form-control" type="hidden" value=@item.LanguageId>
-                                <label for="GlobalTextDataLanguages[@languageIndexer].Value" class="col-sm-4 col-form-label">İçerik :</label>
+                                <input name="MenuItemLanguages[@languageIndexer].LanguageId" class="form-control" type="hidden" value=@item.LanguageId>
+                                <label for="MenuItemLanguages[@languageIndexer].DisplayName" class="col-sm-4 col-form-label">Görünen Metin :</label>
                                 <div class="col-sm-8">
-                                    <textarea name="GlobalTextDataLanguages[@languageIndexer].Value" class="form-control" row="5" type="text">@item.Value</textarea>
+                                    <input name="MenuItemLanguages[@languageIndexer].DisplayName" class="form-control" type="text" value="@item.DisplayName ">
                                 </div>
                             </div>
                         </div>
                         languageIndexer = languageIndexer + 1;
                     }
                 </div>
+
                 <div class="form-group row">
                     <label for="isActive" class="col-sm-4 col-form-label">Aktif mi ?</label>
                     <div class="col-sm-8 d-flex align-items-center">
@@ -203,12 +219,15 @@ else
 }
 
 <script>
+    $('#TopMenuItemId').attr("select-data", menuId);
+    $('#MenuId').attr("value", menuId);
+    SelectInput('#TopMenuItemId', "/backofis/Menu/GetMenuItemSelector", "GET", menuId)
     var InsertOrUpdateValue = "@ViewBag.InsertOrUpdate"
      function InserOrUpdate(form) {
          var postDataObject = $(form).serialize();
          if (InsertOrUpdateValue == "Insert") {
              $.ajax({
-                 url: "/backofis/GlobalTextData/Add",
+                 url: "/backofis/Menu/MenuItemAdd",
                  type: "POST",
                  data: postDataObject,
                  cache: false,
@@ -229,7 +248,7 @@ else
          }
          else {
              $.ajax({
-                 url: "/backofis/GlobalTextData/Update",
+                 url: "/backofis/Menu/MenuItemUpdate",
                  type: "POST",
                  data: postDataObject,
                  cache: false,

@@ -25,6 +25,7 @@ namespace WebBuilder.Business.Concrete
             var result = new Result<TEntity>();
             try
             {
+                entity.InsertedDate = DateTime.Now;
                 await _dataProvider.AddAsync(entity);
                 result.Status = Core.Util.Enums.Status.Success;
                 result.Message = "Ekleme işlemi başarılı bir şekilde gerçekleştirildi.";

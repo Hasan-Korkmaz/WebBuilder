@@ -55,6 +55,7 @@ namespace WebBuilder.UserUI
             services.AddScoped<ISliderDAL, EfSliderDAL>();
             services.AddScoped<ISliderImageDAL, EfSliderImageDAL>();
             services.AddScoped<IMenuDAL, EfMenuDAL>();
+            services.AddScoped<IMenuItemDAL, EfMenuItemDAL>();
             services.AddScoped<ICategoryDAL, EfCategoryDAL>();
             services.AddScoped<IProductImageDAL, EfProductImageDAL>();
             services.AddScoped<IProductDAL, EfProductDAL>();
@@ -70,6 +71,7 @@ namespace WebBuilder.UserUI
             services.AddScoped<ISliderService, SliderMenager>();
             services.AddScoped<ISliderImageService, SliderImageMenager>();
             services.AddScoped<IMenuService, MenuMenager>();
+            services.AddScoped<IMenuItemService, MenuItemMenager>();
             services.AddScoped<ICategoryService, CategoryMenager>();
             services.AddScoped<IProductImageService, ProductImageMenager>();
             services.AddScoped<IProductService, ProductMenager>();

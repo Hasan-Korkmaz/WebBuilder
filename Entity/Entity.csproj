@@ -15,8 +15,4 @@
     <ProjectReference Include="..\WebBuilder.Core\WebBuilder.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="LanguageModels\" />
-  </ItemGroup>
-
 </Project>

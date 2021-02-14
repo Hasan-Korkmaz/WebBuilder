@@ -17,6 +17,8 @@ namespace WebBuilder.Extension.DataExtension
             IList<Slider> sliderList = new List<Slider>();
             IList<SliderImage> sliderImages = new List<SliderImage>();
             IList<Menu> menuList = new List<Menu>();
+            IList<MenuItem> menuItemList = new List<MenuItem>();
+            IList<MenuItemLanguage> menuItemLanguageList = new List<MenuItemLanguage>();
             IList<Category> categoryList = new List<Category>();
             IList<Product> productList = new List<Product>();
             IList<Contact> contactList = new List<Contact>();
@@ -63,39 +65,63 @@ namespace WebBuilder.Extension.DataExtension
 
             #region Menu
             #region MainMenu
-            var homePageMenuItem1 = new Menu() { Id = 1, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Anasayfa", MenuName = "MainMenu", MenuURL = "/Home/Index" };
-            var homePageMenuItem2 = new Menu() { Id = 2, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Kurumsal", MenuName = "MainMenu", MenuURL = "/Home/AboutUS" };
-            var homePageMenuItem3 = new Menu() { Id = 3, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Ürünler", MenuName = "MainMenu", MenuURL = "/Home/Product" };
-            var homePageMenuItem4 = new Menu() { Id = 4, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Blog", MenuName = "MainMenu", MenuURL = "/Home/Blog" };
-            var homePageMenuItem5 = new Menu() { Id = 5, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Hizmetler", MenuName = "MainMenu", MenuURL = "/Home/Services" };
-            var homePageMenuItem6 = new Menu() { Id = 6, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "Referans", MenuName = "MainMenu", MenuURL = "/Home/AboutUS#who-work-with-side" };
-            var homePageMenuItem7 = new Menu() { Id = 7, InsertedDate = DateTime.Now, LanguageId = 1, isActive = true, isDelete = false, MenuDisplayName = "İletisim", MenuName = "MainMenu", MenuURL = "/Home/ContactUS" };
-            
-            
+            var homePageMenu = new Menu() { Id = 1, InsertedDate = DateTime.Now, isActive = true, isDelete = false,Tag="MainMenu",  Name = "Anasayfa Menüsü", Description = "Bu açıklama Seed'de otomatik olarak oluşturuldu." };
 
-            var homePageMenuItem8 = new Menu() { Id = 8, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "Home Page", MenuName = "MainMenu", MenuURL = "/Home/Index" };
-            var homePageMenuItem9 = new Menu() { Id = 9, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "About Us", MenuName = "MainMenu", MenuURL = "/Home/AboutUS" };
-            var homePageMenuItem10 = new Menu() { Id = 10, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "Products", MenuName = "MainMenu", MenuURL = "/Home/Product" };
-            var homePageMenuItem11 = new Menu() { Id = 11, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "Blog", MenuName = "MainMenu", MenuURL = "/Home/Blog" };
-            var homePageMenuItem12 = new Menu() { Id = 12, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "Services", MenuName = "MainMenu", MenuURL = "/Home/Services" };
-            var homePageMenuItem13 = new Menu() { Id = 13, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "References", MenuName = "MainMenu", MenuURL = "/Home/AboutUS#who-work-with-side" };
-            var homePageMenuItem14 = new Menu() { Id = 14, InsertedDate = DateTime.Now, LanguageId = 2, isActive = true, isDelete = false, MenuDisplayName = "Contact Us", MenuName = "MainMenu", MenuURL = "/Home/ContactUs" };
+            var homePageMenuItem1 = new MenuItem() { Id = 1,Name="Anasayfa", MenuId=1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/Index" };
+            var homePageMenuItemTR = new MenuItemLanguage() { Id = 1, LanguageId=1,MenuItemId=1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Anasayfa" };
+            var homePageMenuItemEN = new MenuItemLanguage() { Id = 2,LanguageId=2,MenuItemId=1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Homepage" };
+
+            var homePageMenuItem2 = new MenuItem() { Id = 2, Name = "Hakkımızda", MenuId = 1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/AboutUS" };
+            var homePageMenuItem2TR = new MenuItemLanguage() { Id = 3, LanguageId = 1, MenuItemId = homePageMenuItem2.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Kurumsal" };
+            var homePageMenuItem2EN = new MenuItemLanguage() { Id = 4, LanguageId = 2, MenuItemId = homePageMenuItem2.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "AboutUS" };
+
+            var homePageMenuItem3 = new MenuItem() { Id = 3, Name = "Ürünler", MenuId = 1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/Product" };
+            var homePageMenuItem3TR = new MenuItemLanguage() { Id = 5, LanguageId = 1, MenuItemId = homePageMenuItem3.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Ürünler" };
+            var homePageMenuItem3EN = new MenuItemLanguage() { Id = 6, LanguageId = 2, MenuItemId = homePageMenuItem3.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Products" };
+
+            var homePageMenuItem4 = new MenuItem() { Id = 4, Name = "Blog", MenuId = 1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/Blog" };
+            var homePageMenuItem4TR = new MenuItemLanguage() { Id = 7, LanguageId = 1, MenuItemId = homePageMenuItem4.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Blog" };
+            var homePageMenuItem4EN = new MenuItemLanguage() { Id = 8, LanguageId = 2, MenuItemId = homePageMenuItem4.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Blog" };
+
+
+            var homePageMenuItem5 = new MenuItem() { Id = 5, Name = "Hizmetler", MenuId = 1, InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/Services" };
+            var homePageMenuItem5TR = new MenuItemLanguage() { Id = 9, LanguageId = 1, MenuItemId = homePageMenuItem5.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Hizmetler" };
+            var homePageMenuItem5EN = new MenuItemLanguage() { Id = 10, LanguageId = 2, MenuItemId = homePageMenuItem5.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Services" };
+
+            var homePageMenuItem6 = new MenuItem() { Id = 6, MenuId = 1, Name = "Referans", InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/AboutUS#who-work-with-side" };
+            var homePageMenuItem6TR = new MenuItemLanguage() { Id = 11, LanguageId = 1, MenuItemId = homePageMenuItem6.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "Referans" };
+            var homePageMenuItem6EN = new MenuItemLanguage() { Id = 12, LanguageId = 2, MenuItemId = homePageMenuItem6.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "References" };
+
+
+
+            var homePageMenuItem7 = new MenuItem() { Id = 7, MenuId = 1, Name = "İletişim", InsertedDate = DateTime.Now, isActive = true, isDelete = false, Url = "/Home/ContactUs" };
+            var homePageMenuItem7TR = new MenuItemLanguage() { Id = 13, LanguageId = 1, MenuItemId = homePageMenuItem7.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "İletişim" };
+            var homePageMenuItem7EN = new MenuItemLanguage() { Id = 14, LanguageId = 2, MenuItemId = homePageMenuItem7.Id, InsertedDate = DateTime.Now, isActive = true, isDelete = false, DisplayName = "ContactUS" };
+
+
             #endregion
-            menuList.Add(homePageMenuItem1);
-            menuList.Add(homePageMenuItem2);
-            menuList.Add(homePageMenuItem3);
-            menuList.Add(homePageMenuItem4);
-            menuList.Add(homePageMenuItem5);
-            menuList.Add(homePageMenuItem6);
-            menuList.Add(homePageMenuItem7);
-
-            menuList.Add(homePageMenuItem8);
-            menuList.Add(homePageMenuItem9);
-            menuList.Add(homePageMenuItem10);
-            menuList.Add(homePageMenuItem11);
-            menuList.Add(homePageMenuItem12);
-            menuList.Add(homePageMenuItem13);
-            menuList.Add(homePageMenuItem14);
+            menuList.Add(homePageMenu);
+            menuItemList.Add(homePageMenuItem1);
+            menuItemList.Add(homePageMenuItem2);
+            menuItemList.Add(homePageMenuItem3);
+            menuItemList.Add(homePageMenuItem4);
+            menuItemList.Add(homePageMenuItem5);
+            menuItemList.Add(homePageMenuItem6);
+            menuItemList.Add(homePageMenuItem7);
+            menuItemLanguageList.Add(homePageMenuItemTR);
+            menuItemLanguageList.Add(homePageMenuItemEN);
+            menuItemLanguageList.Add(homePageMenuItem2TR);
+            menuItemLanguageList.Add(homePageMenuItem2EN);
+            menuItemLanguageList.Add(homePageMenuItem3TR);
+            menuItemLanguageList.Add(homePageMenuItem3EN);
+            menuItemLanguageList.Add(homePageMenuItem4TR);
+            menuItemLanguageList.Add(homePageMenuItem4EN);
+            menuItemLanguageList.Add(homePageMenuItem5TR);
+            menuItemLanguageList.Add(homePageMenuItem5EN);
+            menuItemLanguageList.Add(homePageMenuItem6TR);
+            menuItemLanguageList.Add(homePageMenuItem6EN);
+            menuItemLanguageList.Add(homePageMenuItem7TR);
+            menuItemLanguageList.Add(homePageMenuItem7EN);
             #endregion
 
             #region Category
@@ -385,6 +411,8 @@ namespace WebBuilder.Extension.DataExtension
             modelBuilder.Entity<Slider>().HasData(sliderList);
             modelBuilder.Entity<SliderImage>().HasData(sliderImages);
             modelBuilder.Entity<Menu>().HasData(menuList);
+            modelBuilder.Entity<MenuItem>().HasData(menuItemList);
+            modelBuilder.Entity<MenuItemLanguage>().HasData(menuItemLanguageList);
             modelBuilder.Entity<Category>().HasData(categoryList);
             modelBuilder.Entity<Product>().HasData(productList);
             modelBuilder.Entity<Contact>().HasData(contactList);

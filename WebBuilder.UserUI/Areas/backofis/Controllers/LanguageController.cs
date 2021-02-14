@@ -139,7 +139,7 @@ namespace WebBuilder.UserUI.Areas.backofis.Controllers
         }
         public async Task<ApiResponse> GetList()
         {
-            var model = await languageService.GetList(x => true);
+            var model = await languageService.GetList(x => true && x.isDelete==false);
             if (model.Status == Core.Util.Enums.Status.Success)
             {
                 return new ApiResponse { Data = model.Data, Message = model.Message, StatusCode = 200, DataStatus = true };

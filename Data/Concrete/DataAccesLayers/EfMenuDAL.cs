@@ -1,6 +1,7 @@
 ﻿using Data.Abstract;
 using Data.Concrete.Context;
 using Entity;
+using Entity.FrontDataTypes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Data.Concrete.DataAccesLayers
             using (WebBuilderContext ctx = new WebBuilderContext())
             {
                 return await ctx.Menus
-                    .Where(x => x.Language.ShortName.Contains(Language) && x.isDelete == false)
+                    .Where(x =>  x.isDelete == false)
                     .Where(condition ?? (entity => true))
                     .FirstOrDefaultAsync()
                     .ConfigureAwait(false);
@@ -31,11 +32,58 @@ namespace Data.Concrete.DataAccesLayers
             using (WebBuilderContext ctx = new WebBuilderContext())
             {
                 return await ctx.Menus
-                    .Where(x => x.Language.ShortName.Contains(Language) && x.isDelete == false)
+                    .Where(x =>  x.isDelete == false)
                     .Where(condition ?? (entity => true))
                     .ToListAsync()
                     .ConfigureAwait(false);
             }
         }
+
+        public async Task<List<MenuWithURL>> GetFullMenu(string tag)
+        {
+            using (WebBuilderContext ctx = new WebBuilderContext())
+            {
+                var q = ctx.Menus.Where(x => x.isDelete == false && x.Tag.Contains(tag)).FirstOrDefault();
+                var qx = ctx.Languages.Where(x => x.isDelete == false && x.ShortName.Contains(Language)).FirstOrDefault();
+               
+                
+              var data=      ctx.MenuItems.Where(x => x.MenuId == q.Id && x.isDelete==false && x.isActive==true && x.MenuItemLanguages.Any(x=> x.LanguageId==qx.Id)).Include(x=> x.MenuItemLanguages).OrderBy(x=> x.TopMenuItemId).ToList();
+                List<MenuWithURL> menuItems = new List<MenuWithURL>();
+                foreach (var item in data)
+                {
+                    MenuWithURL top=null;
+                    if (item.TopMenuItem!=null)
+                    {
+                         top = menuItems.Where(x => x.MenuName == item.TopMenuItem.Name).FirstOrDefault();
+                        if (menuItems.Where(x => x.MenuName == item.TopMenuItem.Name).FirstOrDefault() != null)
+                        {
+                            top.AltMenu.Add(new MenuWithURL() { MenuName = item.MenuItemLanguages.First().DisplayName, MenuLink = item.Url });
+                        }
+                       
+                    }
+                    else
+                    {
+                        menuItems.Add(new MenuWithURL() { MenuName = item.MenuItemLanguages.First().DisplayName, MenuLink = item.Url });
+
+                    }
+                }
+                return menuItems;
+                
+                    
+            }
+        }
+        public  async Task<List<MenuItem>> GetMenuItems(int Id)
+        {
+            
+                using (WebBuilderContext ctx = new WebBuilderContext())
+                {
+                    return await ctx.MenuItems
+                        .Where(x => x.isDelete == false)
+                        .Where(x=> x.MenuId==Id ).Include(x=> x.MenuItemLanguages).Include(x=> x.TopMenuItem)
+                        .ToListAsync()
+                        .ConfigureAwait(false);
+                }
+        }
+
     }
 }
